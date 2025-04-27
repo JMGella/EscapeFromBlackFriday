@@ -32,7 +32,7 @@ public class Player extends Character {
         leftAnimation = new Animation<>(0.15f, R.getAnimation("player_run_left"));
         currentFrame = R.getTexture("player_idle_right");
         state = State.IDLE_RIGHT;
-        setPosition(new Vector2(0, TILE_HEIGHT * 1));
+        setPosition(new Vector2(33, TILE_HEIGHT ));
         rectangle.setPosition(position.x, position.y);
 
 
@@ -65,11 +65,11 @@ public class Player extends Character {
             return true;
         }
 
-        if (cellX1 >= LevelManager.groundLayer.getWidth() || cellY1 >= LevelManager.groundLayer.getHeight()){
+        if (cellX1 >= LevelManager.groundLayer.getWidth()){
             return true;
         }
 
-        if (cellX2 >= LevelManager.groundLayer.getWidth() || cellY2 >= LevelManager.groundLayer.getHeight()) {
+        if (cellX2 >= LevelManager.groundLayer.getWidth()) {
             return true;
         }
 
@@ -89,6 +89,7 @@ public class Player extends Character {
 
 
     public void update(float dt){
+
         velocity.y += GRAVITY * dt;
         stateTime += dt;
         float nextX = position.x + velocity.x * dt;
