@@ -3,8 +3,11 @@ package com.svalero.EFBF.screen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.kotcrab.vis.ui.VisUI;
 import com.kotcrab.vis.ui.widget.*;
@@ -23,9 +26,12 @@ public class ConfigurationScreen implements Screen {
 
     VisLabel volumeLabel;
 
-    public ConfigurationScreen(EFBF game, Screen previousScreen) {
+    Music music;
+
+    public ConfigurationScreen(EFBF game, Screen previousScreen, Music music) {
         this.game = game;
         this.previousScreen = previousScreen;
+        this.music = music;
         loadPreferences();
     }
 
@@ -66,18 +72,26 @@ public class ConfigurationScreen implements Screen {
                 super.clicked(event, x, y);
                 preferences.putBoolean("music", musicCheckBox.isChecked());
                 preferences.flush();
+                if (musicCheckBox.isChecked()) {
+                    music.play();
+                } else {
+                    music.pause();
+                }
             }
         });
 
         volumeLabel = new VisLabel("Volume :" + preferences.getFloat("volume", 50));
         VisSlider volumeSlider = new VisSlider(0, 100, 1, false);
         volumeSlider.setValue(preferences.getFloat("volume", 50));
-        volumeSlider.addListener(new ClickListener() {
+
+        volumeSlider.addListener(new ChangeListener() {
             @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                preferences.putFloat("volume", volumeSlider.getValue());
+            public void changed(ChangeEvent event, Actor actor) {
+                float volume = volumeSlider.getValue();
+                preferences.putFloat("volume", volume);
                 preferences.flush();
+                volumeLabel.setText("Volume: " + (int) volume);
+                music.setVolume(volume / 100f);
             }
         });
 
@@ -110,6 +124,7 @@ public class ConfigurationScreen implements Screen {
     public void show() {
         loadStage();
         Gdx.input.setInputProcessor(stage);
+
     }
 
     @Override
@@ -119,7 +134,7 @@ public class ConfigurationScreen implements Screen {
 
         stage.act(v);
         stage.draw();
-        volumeLabel.setText("Volume : " + preferences.getFloat("volume", 50));
+
 
     }
 

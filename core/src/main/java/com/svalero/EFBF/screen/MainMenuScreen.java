@@ -3,6 +3,7 @@ package com.svalero.EFBF.screen;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
@@ -11,10 +12,13 @@ import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTable;
 import com.kotcrab.vis.ui.widget.VisTextButton;
 import com.svalero.EFBF.EFBF;
+import com.svalero.EFBF.manager.R;
 
 public class MainMenuScreen implements Screen {
     private EFBF game;
     private Stage stage;
+
+    public Music music;
 
 
     public MainMenuScreen(EFBF game) {
@@ -42,6 +46,7 @@ public class MainMenuScreen implements Screen {
             public void clicked(InputEvent event, float x, float y) {
                 dispose();
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new GameScreen(game));
+                music.stop();
             }
         });
 
@@ -50,7 +55,7 @@ public class MainMenuScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 dispose();
-                ((Game) Gdx.app.getApplicationListener()).setScreen(new ConfigurationScreen(game, game.getScreen()));
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new ConfigurationScreen(game, game.getScreen(), music));
             }
         });
 
@@ -77,6 +82,15 @@ public class MainMenuScreen implements Screen {
     @Override
     public void show() {
         loadStage();
+        music = R.getMusic("menuMusic");
+        music.setLooping(true);
+        music.setVolume(game.prefs.getFloat("volume", 50)/100f);
+        if (game.prefs.getBoolean("music")) {
+            music.play();
+        } else {
+            music.stop();
+        }
+
     }
 
     @Override
@@ -86,6 +100,7 @@ public class MainMenuScreen implements Screen {
 
         stage.act(v);
         stage.draw();
+
 
     }
 
@@ -112,5 +127,6 @@ public class MainMenuScreen implements Screen {
     @Override
     public void dispose() {
     stage.dispose();
+
     }
 }
