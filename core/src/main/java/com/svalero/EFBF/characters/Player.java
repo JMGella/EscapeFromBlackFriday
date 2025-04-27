@@ -3,11 +3,12 @@ package com.svalero.EFBF.characters;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
+import com.svalero.EFBF.manager.LevelManager;
 import com.svalero.EFBF.manager.R;
 
-import static com.svalero.EFBF.util.Constants.PLAYER_SPEED;
-import static com.svalero.EFBF.util.Constants.TILE_HEIGHT;
+import static com.svalero.EFBF.util.Constants.*;
 
 public class Player extends Character {
     private int score;
@@ -37,30 +38,88 @@ public class Player extends Character {
 
     }
 
-    public void moveRight(float delta) {
+    public void moveRight() {
         velocity.x = PLAYER_SPEED;
     }
 
-    public void moveLeft(float delta) {
+    public void moveLeft() {
         velocity.x = -PLAYER_SPEED;
     }
 
+    public void jump(){
+        if(!isJumping){
+            velocity.y = PLAYER_JUMP_SPEED;
+            isJumping = true;
+        }
+    }
+
+
+    private boolean isCellBlocked(float x, float y) {
+        int cellX1 = (int) (x / TILE_WIDTH);
+        int cellY1 = (int) (y / TILE_HEIGHT);
+
+        int cellX2 = (int) ((x + rectangle.getWidth() - 1) / TILE_WIDTH);
+        int cellY2 = (int) (y / TILE_HEIGHT);
+
+        if (cellX1 < 0 || cellY1 < 0 || cellX2 < 0 || cellY2 < 0) {
+            return true;
+        }
+
+        if (cellX1 >= LevelManager.groundLayer.getWidth() || cellY1 >= LevelManager.groundLayer.getHeight()){
+            return true;
+        }
+
+        if (cellX2 >= LevelManager.groundLayer.getWidth() || cellY2 >= LevelManager.groundLayer.getHeight()) {
+            return true;
+        }
+
+        TiledMapTileLayer.Cell cell1 = LevelManager.groundLayer.getCell(cellX1, cellY1);
+        TiledMapTileLayer.Cell cell2 = LevelManager.groundLayer.getCell(cellX2, cellY2);
+
+        if (cell1 != null) {
+            return true;
+        } else if (cell2 != null) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+
 
     public void update(float dt){
-        position.x += velocity.x * dt;
-        position.y += velocity.y * dt;
+        velocity.y += GRAVITY * dt;
+        stateTime += dt;
+        float nextX = position.x + velocity.x * dt;
+        if (!isCellBlocked(nextX, position.y)) {
+            position.x = nextX;
+        } else {
+            velocity.x = 0;
+        }
+        float nextY = position.y + velocity.y * dt;
+        if (!isCellBlocked(position.x, nextY)) {
+            position.y = nextY;
+        } else {
+            if (velocity.y < 0) {
+                isJumping = false;
+            }
+            velocity.y = 0;
+        }
         rectangle.setPosition(position);
 
-        stateTime += dt;
 
-        if (velocity.x > 0 ) {
+        if (velocity.x > 0) {
             state = State.RIGHT;
         } else if (velocity.x < 0) {
             state = State.LEFT;
         } else {
-            state = State.IDLE_RIGHT;
+            if (state == State.RIGHT) {
+                state = State.IDLE_RIGHT;
+            } else if (state == State.LEFT) {
+                state = State.IDLE_LEFT;
+            }
         }
-
         switch (state) {
             case RIGHT:
                 currentFrame = rightAnimation.getKeyFrame(stateTime, true);
@@ -75,6 +134,8 @@ public class Player extends Character {
                 currentFrame = R.getTexture("player_idle_left");
                 break;
         }
+
+
 
 
     }

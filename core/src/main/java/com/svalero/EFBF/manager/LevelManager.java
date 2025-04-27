@@ -22,7 +22,7 @@ public class LevelManager {
     public void loadCurrentLevel() {
         map = new TmxMapLoader().load("levels/level1.tmx");
         groundLayer = (TiledMapTileLayer) map.getLayers().get("ground");
-        System.out.println("Ground layer: " + groundLayer);
+
 
     }
 

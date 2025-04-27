@@ -2,9 +2,12 @@ package com.svalero.EFBF.manager;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.svalero.EFBF.EFBF;
 import com.svalero.EFBF.characters.Player;
 
+import static com.svalero.EFBF.util.Constants.TILE_WIDTH;
 
 
 public class LogicManager {
@@ -34,12 +37,18 @@ public class LogicManager {
         player.setVelocity(0,0);
 
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-            player.moveRight(dt);
+            player.moveRight();
         }
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-            player.moveLeft(dt);
+            player.moveLeft();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+            player.jump();
         }
     }
+
+
+
 
     public void update(float dt) {
 
