@@ -45,6 +45,12 @@ public class GameScreen implements Screen {
     public void render(float v){
         logicManager.update(v);
         renderManager.render();
+        if (game.isPaused) {
+            levelManager.music.pause();
+        }
+        else {
+            levelManager.music.play();
+        }
 
     }
 
@@ -70,7 +76,8 @@ public class GameScreen implements Screen {
 
     @Override
     public void dispose() {
-
+       levelManager.dispose();
+       renderManager.dispose();
 
     }
 }

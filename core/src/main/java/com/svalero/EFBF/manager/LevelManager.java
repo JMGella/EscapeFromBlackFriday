@@ -17,7 +17,7 @@ public class LevelManager {
 
     public static TiledMapTileLayer groundLayer;
 
-    private Music music;
+    public Music music;
 
     private int level;
 
@@ -42,6 +42,15 @@ public class LevelManager {
             music.play();
         } else {
             music.stop();
+        }
+    }
+
+    public void dispose() {
+        if (map != null) {
+            map.dispose();
+        }
+        if (music != null) {
+            music.dispose();
         }
     }
 

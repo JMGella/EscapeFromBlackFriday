@@ -15,6 +15,7 @@ import static com.svalero.EFBF.util.Constants.GAME_NAME;
 public class EFBF extends Game {
 
     public Preferences prefs;
+    public boolean isPaused;
 
 
 

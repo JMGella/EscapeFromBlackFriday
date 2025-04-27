@@ -1,11 +1,15 @@
 package com.svalero.EFBF.manager;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.svalero.EFBF.EFBF;
 import com.svalero.EFBF.characters.Player;
+import com.svalero.EFBF.screen.GameScreen;
+import com.svalero.EFBF.screen.PauseScreen;
 
 import static com.svalero.EFBF.util.Constants.TILE_WIDTH;
 
@@ -42,8 +46,13 @@ public class LogicManager {
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
             player.moveLeft();
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)) {
             player.jump();
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
+            game.isPaused = true;
+            Screen currentScreen = game.getScreen();
+            game.setScreen(new PauseScreen(game, currentScreen));
         }
     }
 

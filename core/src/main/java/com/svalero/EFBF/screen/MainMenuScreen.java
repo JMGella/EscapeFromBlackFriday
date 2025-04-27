@@ -14,6 +14,8 @@ import com.kotcrab.vis.ui.widget.VisTextButton;
 import com.svalero.EFBF.EFBF;
 import com.svalero.EFBF.manager.R;
 
+import static com.svalero.EFBF.util.Constants.GAME_NAME;
+
 public class MainMenuScreen implements Screen {
     private EFBF game;
     private Stage stage;
@@ -37,7 +39,7 @@ public class MainMenuScreen implements Screen {
         table.center();
         stage.addActor(table);
 
-        VisLabel titleLabel = new VisLabel("EFBF");
+        VisLabel titleLabel = new VisLabel(GAME_NAME);
         titleLabel.setFontScale(2.5f);
 
         VisTextButton startButton = new VisTextButton("Start");
@@ -64,18 +66,18 @@ public class MainMenuScreen implements Screen {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 dispose();
-                System.exit(0);
+                Gdx.app.exit();
             }
         });
 
         table.row();
-        table.add(titleLabel).center();
+        table.add(titleLabel).center().padBottom(30);;
         table.row();
-        table.add(startButton).center();
+        table.add(startButton).center().width(200).height(50).padBottom(20);;
         table.row();
-        table.add(configButton).center();
+        table.add(configButton).center().width(200).height(50).padBottom(20);;
         table.row();
-        table.add(exitButton).center();
+        table.add(exitButton).center().width(200).height(50).padBottom(20);;
 
         Gdx.input.setInputProcessor(stage);
     }

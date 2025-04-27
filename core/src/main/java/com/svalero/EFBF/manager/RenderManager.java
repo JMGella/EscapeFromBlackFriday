@@ -39,4 +39,10 @@ public class RenderManager {
         batch.draw(logicManager.player.getCurrentFrame(), logicManager.player.getX(), logicManager.player.getY());
         batch.end();
     }
+
+    public void dispose() {
+        if (mapRender != null) {
+            mapRender.dispose();
+        }
+    }
 }
