@@ -1,11 +1,10 @@
-package com.svalero.EFBF.characters;
+package com.svalero.EFBF.items;
 
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
-public class Item extends Character{
-
-    public Item(TextureRegion texture, Vector2 position){
+public class Phone extends Item{
+    public Phone(TextureRegion texture, Vector2 position) {
         super(texture, position);
     }
 }
