@@ -7,10 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.kotcrab.vis.ui.VisUI;
-import com.kotcrab.vis.ui.widget.VisCheckBox;
-import com.kotcrab.vis.ui.widget.VisLabel;
-import com.kotcrab.vis.ui.widget.VisTable;
-import com.kotcrab.vis.ui.widget.VisTextButton;
+import com.kotcrab.vis.ui.widget.*;
 import com.svalero.EFBF.EFBF;
 
 import static com.svalero.EFBF.util.Constants.GAME_NAME;
@@ -23,6 +20,8 @@ public class ConfigurationScreen implements Screen {
     private Preferences preferences;
 
     private Stage stage;
+
+    VisLabel volumeLabel;
 
     public ConfigurationScreen(EFBF game, Screen previousScreen) {
         this.game = game;
@@ -59,6 +58,28 @@ public class ConfigurationScreen implements Screen {
                     preferences.flush();
                 }
         });
+        VisCheckBox musicCheckBox = new VisCheckBox("Music");
+        musicCheckBox.setChecked(preferences.getBoolean("music", true));
+        musicCheckBox.addListener(new ClickListener()  {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                preferences.putBoolean("music", musicCheckBox.isChecked());
+                preferences.flush();
+            }
+        });
+
+        volumeLabel = new VisLabel("Volume :" + preferences.getFloat("volume", 50));
+        VisSlider volumeSlider = new VisSlider(0, 100, 1, false);
+        volumeSlider.setValue(preferences.getFloat("volume", 50));
+        volumeSlider.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                super.clicked(event, x, y);
+                preferences.putFloat("volume", volumeSlider.getValue());
+                preferences.flush();
+            }
+        });
 
         VisTextButton backButton = new VisTextButton("Back");
         backButton.addListener(new ClickListener() {
@@ -72,7 +93,13 @@ public class ConfigurationScreen implements Screen {
         table.row();
         table.add(titleLabel).colspan(2).padBottom(20);
         table.row();
-        table.add(soundCheckBox).padBottom(20);
+        table.add(soundCheckBox).padBottom(20).center();
+        table.row();
+        table.add(musicCheckBox).padBottom(20).center();
+        table.row();
+        table.add(volumeLabel).padBottom(20);
+        table.row();
+        table.add(volumeSlider).padBottom(20);
         table.row();
         table.add(backButton).padBottom(20);
 
@@ -82,6 +109,7 @@ public class ConfigurationScreen implements Screen {
     @Override
     public void show() {
         loadStage();
+        Gdx.input.setInputProcessor(stage);
     }
 
     @Override
@@ -91,6 +119,7 @@ public class ConfigurationScreen implements Screen {
 
         stage.act(v);
         stage.draw();
+        volumeLabel.setText("Volume : " + preferences.getFloat("volume", 50));
 
     }
 
