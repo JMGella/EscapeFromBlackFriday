@@ -4,10 +4,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.math.Vector2;
+import com.svalero.EFBF.characters.Enemy;
 import com.svalero.EFBF.characters.Player;
+import com.svalero.EFBF.items.Item;
 
 import static com.svalero.EFBF.util.Constants.GAME_NAME;
 
@@ -17,6 +21,8 @@ public class LevelManager {
 
     public static TiledMapTileLayer groundLayer;
 
+    public static TiledMapTileLayer objectsLayer;
+
     public Music music;
 
     private int level;
@@ -25,9 +31,9 @@ public class LevelManager {
 
 
     private LogicManager logicManager;
-    public LevelManager(LogicManager logicManager) {
+    public LevelManager(LogicManager logicManager, int currentLevel) {
         this.logicManager = logicManager;
-        level = 1;
+        level = currentLevel;
         prefs = Gdx.app.getPreferences(GAME_NAME);
         loadCurrentLevel(level);
     }
@@ -35,6 +41,13 @@ public class LevelManager {
     public void loadCurrentLevel(int level) {
         map = new TmxMapLoader().load("levels/level" + level +".tmx");
         groundLayer = (TiledMapTileLayer) map.getLayers().get("ground");
+        objectsLayer = (TiledMapTileLayer) map.getLayers().get("objects");
+        setMusic();
+        loadEnemies();
+        loadItems();
+    }
+
+    private void setMusic(){
         music = R.getMusic("level" + level + "Music");
         music.setLooping(true);
         music.setVolume(prefs.getFloat("volume",50)/100f);
@@ -43,6 +56,35 @@ public class LevelManager {
         } else {
             music.stop();
         }
+
+    }
+
+
+    private void loadEnemies(){
+        for (MapObject mapObject : map.getLayers().get("objects").getObjects()) {
+            String type = mapObject.getProperties().get("type", String.class);
+            if (type.equals("enemy")) {
+                int x = (int) mapObject.getProperties().get("x", Integer.class);
+                int y = (int) mapObject.getProperties().get("y", Integer.class);
+                String name = mapObject.getProperties().get("name", String.class);
+                String speed = mapObject.getProperties().get("speed", String.class);
+                Enemy enemy = new Enemy(R.getTexture(name), new Vector2(x, y), speed);
+                logicManager.enemies.add(enemy);
+            }
+        }
+    }
+
+    private void loadItems(){
+        for (MapObject mapObject : map.getLayers().get("objects").getObjects()) {
+            String type = mapObject.getProperties().get("type", String.class);
+            if (type.equals("item")) {
+                int x = (int) mapObject.getProperties().get("x", Integer.class);
+                int y = (int) mapObject.getProperties().get("y", Integer.class);
+                String name = mapObject.getProperties().get("name", String.class);
+                logicManager.items.add(new Item(R.getTexture(name), new Vector2(x, y), name));
+            }
+        }
+
     }
 
     public void dispose() {

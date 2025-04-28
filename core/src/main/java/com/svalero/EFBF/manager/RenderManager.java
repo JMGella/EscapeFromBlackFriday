@@ -15,7 +15,8 @@ public class RenderManager {
     public RenderManager(LogicManager logicManager, TiledMap map){
         this.logicManager = logicManager;
         this.camera = new OrthographicCamera();
-        this.camera.setToOrtho(false, 640, 360);
+        this.camera.setToOrtho(false, 540, 360);
+//        this.camera.setToOrtho(false, 640, 360);
         this.camera.update();
 
         this.mapRender = new OrthogonalTiledMapRenderer(map);

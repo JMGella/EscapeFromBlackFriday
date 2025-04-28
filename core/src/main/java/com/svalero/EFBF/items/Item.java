@@ -6,7 +6,10 @@ import com.svalero.EFBF.characters.Character;
 
 public class Item extends Character {
 
-    public Item(TextureRegion texture, Vector2 position){
+    public String name;
+
+    public Item(TextureRegion texture, Vector2 position, String name) {
         super(texture, position);
+        this.name = name;
     }
 }

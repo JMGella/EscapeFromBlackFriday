@@ -3,6 +3,7 @@ package com.svalero.EFBF.manager;
 
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
@@ -26,6 +27,7 @@ public class R {
         assetManager.load("music/menuMusic.mp3", Music.class);
         assetManager.load("music/level1Music.mp3", Music.class);
         assetManager.load("music/level2Music.mp3", Music.class);
+        assetManager.load("sound/hit.mp3", Sound.class);
         assetManager.finishLoading();
 
     }
@@ -42,7 +44,9 @@ public class R {
         return assetManager.get("music/" + name + ".mp3", Music.class);
     }
 
-
+    public static Sound getSound(String name) {
+        return assetManager.get("sound/" + name + ".mp3", Sound.class);
+    }
 }
 
 

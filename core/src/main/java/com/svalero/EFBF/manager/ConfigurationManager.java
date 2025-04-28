@@ -16,5 +16,9 @@ public class ConfigurationManager {
         return preferences.getBoolean("music", true);
     }
 
+    public static boolean isSoundEnabled(){
+        return preferences.getBoolean("sound", true);
+    }
+
 
 }

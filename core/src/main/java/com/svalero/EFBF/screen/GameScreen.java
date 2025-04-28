@@ -21,18 +21,21 @@ public class GameScreen implements Screen {
     private RenderManager renderManager;
     private LevelManager levelManager;
 
+    private int currentLevel;
 
 
-    public GameScreen(EFBF game) {
+
+    public GameScreen(EFBF game, int currentLevel) {
         this.game = game;
+        this.currentLevel = currentLevel;
         ConfigurationManager.loadPreferences();
-        loadManagers();
+        loadManagers(currentLevel);
 
     }
 
-    private void loadManagers() {
+    private void loadManagers(int currentLevel) {
         logicManager = new LogicManager(game);
-        levelManager = new LevelManager(logicManager);
+        levelManager = new LevelManager(logicManager, currentLevel);
         renderManager = new RenderManager(logicManager, levelManager.map);
 
     }

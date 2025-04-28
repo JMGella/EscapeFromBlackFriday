@@ -1,24 +1,29 @@
 package com.svalero.EFBF.characters;
 
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.svalero.EFBF.manager.LevelManager;
 import com.svalero.EFBF.manager.R;
+import com.svalero.EFBF.screen.GameScreen;
+
+import java.util.ArrayList;
 
 import static com.svalero.EFBF.util.Constants.*;
 
 public class Player extends Character {
-    private int score;
-    private int lives;
+    public int score;
+    public int lives;
     private int currentLevel;
 
-    private enum State {RIGHT, LEFT, IDLE_RIGHT, IDLE_LEFT}
-    public State state;
-    private Animation<TextureRegion> rightAnimation, leftAnimation;
-    private float stateTime;
+    protected enum State {RIGHT, LEFT, IDLE_RIGHT, IDLE_LEFT}
+    protected State state;
+    protected Animation<TextureRegion> rightAnimation, leftAnimation;
+    protected float stateTime;
 
 
 
@@ -26,7 +31,7 @@ public class Player extends Character {
     public Player(TextureRegion texture) {
         super(texture);
         score = 0;
-        lives = 3;
+        lives = 5;
         currentLevel = 1;
         rightAnimation = new Animation<>(0.15f, R.getAnimation("player_run_right"));
         leftAnimation = new Animation<>(0.15f, R.getAnimation("player_run_left"));
@@ -50,11 +55,12 @@ public class Player extends Character {
         if(!isJumping){
             velocity.y = PLAYER_JUMP_SPEED;
             isJumping = true;
+            R.getSound("jump").play();
         }
     }
 
 
-    private boolean isCellBlocked(float x, float y) {
+    protected boolean isCellBlocked(float x, float y) {
         int cellX1 = (int) (x / TILE_WIDTH);
         int cellY1 = (int) (y / TILE_HEIGHT);
 
@@ -82,6 +88,25 @@ public class Player extends Character {
             return true;
         } else {
             return false;
+        }
+
+    }
+
+    public void getDamage(){
+        lives--;
+    }
+
+
+
+    public void takeItem(String name){
+        if (name.equals("phone")){
+            score++;
+        } else if (name.equals("wallet")){
+            score++;
+        } else if (name.equals("keys")){
+            score++;
+        } else if (name.equals("bottle")){
+            score++;
         }
 
     }
