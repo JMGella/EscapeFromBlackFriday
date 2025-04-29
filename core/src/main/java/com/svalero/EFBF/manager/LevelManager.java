@@ -5,6 +5,7 @@ import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.maps.MapLayer;
 import com.badlogic.gdx.maps.MapObject;
+import com.badlogic.gdx.maps.MapObjects;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -21,7 +22,7 @@ public class LevelManager {
 
     public static TiledMapTileLayer groundLayer;
 
-    public static TiledMapTileLayer objectsLayer;
+    public static MapLayer objectsLayer;
 
     public Music music;
 
@@ -41,7 +42,7 @@ public class LevelManager {
     public void loadCurrentLevel(int level) {
         map = new TmxMapLoader().load("levels/level" + level +".tmx");
         groundLayer = (TiledMapTileLayer) map.getLayers().get("ground");
-        objectsLayer = (TiledMapTileLayer) map.getLayers().get("objects");
+        objectsLayer =  map.getLayers().get("objects");
         setMusic();
         loadEnemies();
         loadItems();
@@ -61,29 +62,28 @@ public class LevelManager {
 
 
     private void loadEnemies(){
-        for (MapObject mapObject : map.getLayers().get("objects").getObjects()) {
+        for (MapObject mapObject : objectsLayer.getObjects()) {
             String type = mapObject.getProperties().get("type", String.class);
             if (type.equals("enemy")) {
-                int x = (int) mapObject.getProperties().get("x", Integer.class);
-                int y = (int) mapObject.getProperties().get("y", Integer.class);
-                String name = mapObject.getProperties().get("name", String.class);
+                float x =  mapObject.getProperties().get("x", Float.class);
+                float y =  mapObject.getProperties().get("y", Float.class);
                 String enemyNumber = mapObject.getProperties().get("enemyNumber", String.class);
-                Enemy enemy = new Enemy(R.getTexture("enemy" + enemyNumber + "idle_left"), new Vector2(x, y), enemyNumber);
+                Enemy enemy = new Enemy(R.getTexture("enemy" + enemyNumber + "_idle_left"), new Vector2(x, y), enemyNumber);
                 logicManager.enemies.add(enemy);
             }
         }
     }
 
     private void loadItems(){
-        for (MapObject mapObject : map.getLayers().get("objects").getObjects()) {
-            String type = mapObject.getProperties().get("type", String.class);
-            if (type.equals("item")) {
-                int x = (int) mapObject.getProperties().get("x", Integer.class);
-                int y = (int) mapObject.getProperties().get("y", Integer.class);
-                String name = mapObject.getProperties().get("name", String.class);
-                logicManager.items.add(new Item(R.getTexture(name), new Vector2(x, y), name));
-            }
-        }
+//        for (MapObject mapObject : map.getLayers().get("objects").getObjects()) {
+//            String type = mapObject.getProperties().get("type", String.class);
+//            if (type.equals("item")) {
+//                int x = (int) mapObject.getProperties().get("x", Integer.class);
+//                int y = (int) mapObject.getProperties().get("y", Integer.class);
+//                String name = mapObject.getProperties().get("name", String.class);
+//                logicManager.items.add(new Item(R.getTexture(name), new Vector2(x, y), name));
+//            }
+//        }
 
     }
 

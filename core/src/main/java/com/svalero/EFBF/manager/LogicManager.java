@@ -12,6 +12,7 @@ import com.svalero.EFBF.characters.Enemy;
 import com.svalero.EFBF.characters.Player;
 import com.svalero.EFBF.items.Item;
 import com.svalero.EFBF.screen.GameScreen;
+import com.svalero.EFBF.screen.MainMenuScreen;
 import com.svalero.EFBF.screen.PauseScreen;
 import com.svalero.EFBF.util.Constants;
 
@@ -72,10 +73,11 @@ public class LogicManager {
     private void enemiesMoves(float dt){
         for (Enemy enemy: enemies){
             if (player.getX() < enemy.getX()){
-                enemy.setVelocity(enemy.speed,0);
+                enemy.setVelocity(-enemy.speed,0);
             } else if (player.getX() > enemy.getX()){
                 enemy.setVelocity(enemy.speed,0);
             }
+            enemy.update(dt);
 
         }
     }
@@ -91,11 +93,11 @@ public class LogicManager {
                     if(ConfigurationManager.isSoundEnabled()){
                         R.getSound("game-over").play();
                     }
-                    game.setScreen(new GameScreen(game, 1));
+                    game.setScreen(new MainMenuScreen(game)); //TODO Screen game over
                 }
-                player.move(player.getX(), player.getY() + 10);
+                player.move(0, player.getY() + 10);
                 enemy.setGhosted(true);
-                enemy.setVelocity(0,-1000);
+                enemy.setVelocity(0,-100);
 
             }
         }
@@ -131,6 +133,8 @@ public class LogicManager {
         managePlayerInput(dt);
         manageColitions();
         player.update(dt);
+        enemiesMoves(dt);
+
 
 
     }

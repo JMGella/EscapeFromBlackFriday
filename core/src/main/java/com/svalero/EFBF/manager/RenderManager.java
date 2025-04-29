@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.svalero.EFBF.characters.Enemy;
 
 public class RenderManager {
 
@@ -38,6 +39,10 @@ public class RenderManager {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         batch.draw(logicManager.player.getCurrentFrame(), logicManager.player.getX(), logicManager.player.getY());
+        for (Enemy enemy : logicManager.enemies) {
+            batch.draw(enemy.getCurrentFrame(), enemy.getX(), enemy.getY());
+        }
+
         batch.end();
     }
 

@@ -7,6 +7,11 @@
     "expandedProjectPaths": [
     ],
     "fileStates": {
+        "enemy1_idle_left.tsx": {
+            "dynamicWrapping": true,
+            "scaleInDock": 1,
+            "scaleInEditor": 1
+        },
         "level1.tmx": {
             "scale": 1.7535416666666668,
             "selectedLayer": 1,
@@ -16,7 +21,7 @@
             }
         }
     },
-    "last.imagePath": "C:/Users/javie/IdeaProjects/EFBK/assets/levels",
+    "last.imagePath": "C:/Users/javie/IdeaProjects/EFBK/assets/enemy1",
     "map.height": 10,
     "map.lastUsedFormat": "tmx",
     "map.width": 50,
@@ -24,7 +29,13 @@
     ],
     "project": "EFBF.tiled-project",
     "recentFiles": [
+        "enemy1_idle_left.tsx",
         "level1.tmx"
     ],
-    "tileset.lastUsedFormat": "tsx"
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 69,
+        "width": 28
+    },
+    "tileset.type": 0
 }

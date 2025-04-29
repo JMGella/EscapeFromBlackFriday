@@ -23,8 +23,8 @@ public class Enemy extends Player {
         super(texture);
         this.position = position;
         this.currentFrame = texture;
-        rightAnimation = new Animation<>(0.15f, R.getAnimation("enemy" + EnemyNumber + "_run_right"));
-        leftAnimation = new Animation<>(0.15f, R.getAnimation("enemy" + EnemyNumber + "_run_left"));
+        rightAnimation = new Animation<>(0.15f, R.getAnimation("enemy" + EnemyNumber + "_walk_right"));
+        leftAnimation = new Animation<>(0.15f, R.getAnimation("enemy" + EnemyNumber + "_walk_left"));
         this.rectangle = new Rectangle(position.x, position.y, texture.getRegionWidth(), texture.getRegionHeight());
         this.state = State.IDLE_LEFT;
         this.stateTime = 0;
@@ -80,27 +80,62 @@ public class Enemy extends Player {
        }
     }
 
+
     @Override
     public void update(float dt) {
 
         velocity.y += GRAVITY * dt;
         stateTime += dt;
         float nextX = position.x + velocity.x * dt;
-        if (!isCellBlocked(nextX, position.y)) {
-            position.x = nextX;
-        } else {
-            velocity.x = 0;
-        }
         float nextY = position.y + velocity.y * dt;
-        if (!isCellBlocked(position.x, nextY)) {
+        if (ghosted){
+            position.x = nextX;
             position.y = nextY;
         } else {
-            if (velocity.y < 0) {
-                isJumping = false;
+
+            if (!isCellBlocked(nextX, position.y)) {
+                position.x = nextX;
+            } else {
+                velocity.x = 0;
             }
-            velocity.y = 0;
+
+            if (!isCellBlocked(position.x, nextY)) {
+                position.y = nextY;
+            } else {
+                if (velocity.y < 0) {
+                    isJumping = false;
+                }
+                velocity.y = 0;
+            }
         }
         rectangle.setPosition(position);
+
+
+        if (velocity.x > 0) {
+            state = State.RIGHT;
+        } else if (velocity.x < 0) {
+            state = State.LEFT;
+        } else {
+            if (state == State.RIGHT) {
+                state = State.IDLE_RIGHT;
+            } else if (state == State.LEFT) {
+                state = State.IDLE_LEFT;
+            }
+        }
+        switch (state) {
+            case RIGHT:
+                currentFrame = rightAnimation.getKeyFrame(stateTime, true);
+                break;
+            case LEFT:
+                currentFrame = leftAnimation.getKeyFrame(stateTime, true);
+                break;
+            case IDLE_RIGHT:
+                currentFrame = R.getTexture("enemy" + intEnemyNumber + "_idle_right");
+                break;
+            case IDLE_LEFT:
+                currentFrame = R.getTexture("enemy" + intEnemyNumber + "_idle_left");
+                break;
+        }
 
     }
 }
