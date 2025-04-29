@@ -30,11 +30,11 @@ public class Enemy extends Player {
         this.stateTime = 0;
         this.intEnemyNumber = Integer.parseInt(EnemyNumber);
         if (intEnemyNumber == 1) {
-            this.speed = 100;
+            this.speed = 50;
         } else if (intEnemyNumber == 2) {
-            this.speed = 200;
+            this.speed = 75;
         } else if (intEnemyNumber == 3) {
-            this.speed = 300;
+            this.speed = 100;
         }
         this.ghosted = false;
     }

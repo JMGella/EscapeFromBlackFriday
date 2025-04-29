@@ -39,6 +39,7 @@ public class RenderManager {
         batch.setProjectionMatrix(camera.combined);
         batch.begin();
         batch.draw(logicManager.player.getCurrentFrame(), logicManager.player.getX(), logicManager.player.getY());
+
         for (Enemy enemy : logicManager.enemies) {
             batch.draw(enemy.getCurrentFrame(), enemy.getX(), enemy.getY());
         }

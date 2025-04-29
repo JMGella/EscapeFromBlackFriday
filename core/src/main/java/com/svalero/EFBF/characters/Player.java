@@ -67,12 +67,12 @@ public class Player extends Character {
 
     protected boolean isCellBlocked(float x, float y) {
         int cellX1 = (int) (x / TILE_WIDTH);
-        int cellY1 = (int) (y / TILE_HEIGHT);
+        int cellX2 = (int) ((x + rectangle.getWidth()) / TILE_WIDTH);
+        int cellX3 = (int) ((x + rectangle.getWidth() /2 )  / TILE_WIDTH);
 
-        int cellX2 = (int) ((x + rectangle.getWidth() - 1) / TILE_WIDTH);
-        int cellY2 = (int) (y / TILE_HEIGHT);
+        int cellY= (int) (y / TILE_HEIGHT);
 
-        if (cellX1 < 0 || cellY1 < 0 || cellX2 < 0 || cellY2 < 0) {
+        if (cellX1 < 0 || cellY < 0 || cellX2 < 0 || cellX3 < 0) {
             return true;
         }
 
@@ -84,12 +84,19 @@ public class Player extends Character {
             return true;
         }
 
-        TiledMapTileLayer.Cell cell1 = LevelManager.groundLayer.getCell(cellX1, cellY1);
-        TiledMapTileLayer.Cell cell2 = LevelManager.groundLayer.getCell(cellX2, cellY2);
+        if (cellX3 >= LevelManager.groundLayer.getWidth()) {
+            return true;
+        }
+
+        TiledMapTileLayer.Cell cell1 = LevelManager.groundLayer.getCell(cellX1, cellY);
+        TiledMapTileLayer.Cell cell2 = LevelManager.groundLayer.getCell(cellX2, cellY);
+        TiledMapTileLayer.Cell cell3 = LevelManager.groundLayer.getCell(cellX3, cellY);
 
         if (cell1 != null) {
             return true;
         } else if (cell2 != null) {
+            return true;
+        } else if (cell3 != null) {
             return true;
         } else {
             return false;
