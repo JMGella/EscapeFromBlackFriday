@@ -28,6 +28,7 @@ public class R {
         assetManager.load("music/level1Music.mp3", Music.class);
         assetManager.load("music/level2Music.mp3", Music.class);
         assetManager.load("sounds/hit.mp3", Sound.class);
+        assetManager.load("sounds/ouch.mp3", Sound.class);
         assetManager.load("sounds/coin.mp3", Sound.class);
         assetManager.load("sounds/die.mp3", Sound.class);
         assetManager.load("sounds/jump.mp3", Sound.class);

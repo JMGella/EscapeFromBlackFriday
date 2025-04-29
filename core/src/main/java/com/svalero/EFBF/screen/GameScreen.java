@@ -41,6 +41,8 @@ public class GameScreen implements Screen {
     }
     @Override
     public void show() {
+        game.isGameOver = false;
+        game.isPaused = false;
 
     }
 
@@ -48,7 +50,10 @@ public class GameScreen implements Screen {
     public void render(float v){
         logicManager.update(v);
         renderManager.render();
-        if (game.isPaused) {
+        if(game.isGameOver){
+            levelManager.music.stop();
+        }
+        else if (game.isPaused) {
             levelManager.music.pause();
         }
         else {
@@ -81,6 +86,7 @@ public class GameScreen implements Screen {
     public void dispose() {
        levelManager.dispose();
        renderManager.dispose();
+
 
     }
 }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="200" height="10" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="3">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="200" height="10" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="12">
  <tileset firstgid="1" source="Tiles.tsx"/>
  <tileset firstgid="13" source="table.tsx"/>
  <tileset firstgid="21" source="pc.tsx"/>
@@ -21,7 +21,37 @@
     <property name="type" value="exit"/>
    </properties>
   </object>
-  <object id="2" gid="35" x="968.667" y="287" width="28" height="69">
+  <object id="2" name="enemy1" gid="35" x="1242" y="281.667" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="1"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="7" name="enemy1" gid="35" x="978" y="285.5" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="1"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="8" name="enemy1" gid="35" x="979.333" y="282.833" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="1"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="9" name="enemy1" gid="35" x="1971.33" y="280.167" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="1"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="10" name="enemy1" gid="35" x="1759.33" y="280.167" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="1"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="11" name="enemy1" gid="35" x="1444.67" y="280.167" width="28" height="69">
    <properties>
     <property name="enemyNumber" value="1"/>
     <property name="type" value="enemy"/>

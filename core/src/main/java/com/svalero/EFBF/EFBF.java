@@ -17,6 +17,7 @@ public class EFBF extends Game {
     public Preferences prefs;
     public boolean isPaused;
 
+    public boolean isGameOver;
 
 
     @Override

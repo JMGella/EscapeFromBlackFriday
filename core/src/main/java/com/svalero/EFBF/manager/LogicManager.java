@@ -11,6 +11,7 @@ import com.svalero.EFBF.EFBF;
 import com.svalero.EFBF.characters.Enemy;
 import com.svalero.EFBF.characters.Player;
 import com.svalero.EFBF.items.Item;
+import com.svalero.EFBF.screen.GameOverScreen;
 import com.svalero.EFBF.screen.GameScreen;
 import com.svalero.EFBF.screen.MainMenuScreen;
 import com.svalero.EFBF.screen.PauseScreen;
@@ -85,33 +86,37 @@ public class LogicManager {
     private void manageColitions(){
         for (Enemy enemy : enemies){
             if (enemy.getRectangle().overlaps(player.getRectangle())){
-                if(ConfigurationManager.isSoundEnabled()){
-                    R.getSound("hit").play();
-                }
                 if (!enemy.ghosted) {
-                    player.getDamage();
-                    if (player.lives == 0) {
-                        if (ConfigurationManager.isSoundEnabled()) {
-                            R.getSound("game-over").play();
+                    if (player.getY() > enemy.getY() + enemy.getHeight() / 2) {
+
+                        if(ConfigurationManager.isSoundEnabled()){
+                            R.getSound("hit").play();
                         }
-                        game.setScreen(new MainMenuScreen(game)); //TODO Screen game over
-                    }
-                    if (player.getY() > enemy.getY()) {
                         player.move(0, 50);
                         enemy.move(0, -30);
+                    } else {
+                        if(ConfigurationManager.isSoundEnabled()){
+                            R.getSound("ouch").play();
+                        }
+                        player.getDamage();
                     }
-                    if (player.getX() < enemy.getX()) {
+                    if (enemy.getX() > player.getX()){
+                        enemy.move(30,0);
 
-                        enemy.move(30, 0);
-                    }
-                    if (player.getX() > enemy.getX()) {
-
+                    } else{
                         enemy.move(-30, 0);
                     }
                     enemy.setGhosted(true);
                     enemy.setVelocity(0, -150);
                     if (enemy.getY() < 0) {
                         enemies.removeValue(enemy, true);
+                    }
+                    if (player.lives == 0) {
+                        if (ConfigurationManager.isSoundEnabled()) {
+                            R.getSound("game-over").play();
+                        }
+                        game.isGameOver = true;
+                        game.setScreen(new GameOverScreen(game));
                     }
                 }
             }

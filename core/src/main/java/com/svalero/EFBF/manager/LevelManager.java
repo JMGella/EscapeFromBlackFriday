@@ -24,7 +24,7 @@ public class LevelManager {
 
     public static MapLayer objectsLayer;
 
-    public Music music;
+    public static Music music;
 
     private int level;
 
@@ -49,10 +49,10 @@ public class LevelManager {
     }
 
     private void setMusic(){
-        music = R.getMusic("level" + level + "Music");
-        music.setLooping(true);
-        music.setVolume(prefs.getFloat("volume",50)/100f);
-        if (prefs.getBoolean("music")) {
+        if(ConfigurationManager.isMusicEnabled()) {
+            music = R.getMusic("level" + level + "Music");
+            music.setLooping(true);
+            music.setVolume(prefs.getFloat("volume", 50) / 100f);
             music.play();
         } else {
             music.stop();

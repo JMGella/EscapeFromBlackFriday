@@ -53,5 +53,13 @@ public abstract class Character {
         velocity.y = y;
     }
 
+    public float getWidth() {
+        return currentFrame.getRegionWidth();
+    }
+
+    public float getHeight() {
+        return currentFrame.getRegionHeight();
+    }
+
 
 }
