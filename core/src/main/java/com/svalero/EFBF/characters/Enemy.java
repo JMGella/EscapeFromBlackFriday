@@ -13,7 +13,7 @@ import static com.svalero.EFBF.util.Constants.*;
 public class Enemy extends Player {
 
     public int speed;
-    private boolean ghosted;
+    public boolean ghosted;
 
 
 

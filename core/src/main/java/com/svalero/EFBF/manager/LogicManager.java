@@ -88,17 +88,32 @@ public class LogicManager {
                 if(ConfigurationManager.isSoundEnabled()){
                     R.getSound("hit").play();
                 }
-                player.getDamage();
-                if (player.lives == 0){
-                    if(ConfigurationManager.isSoundEnabled()){
-                        R.getSound("game-over").play();
+                if (!enemy.ghosted) {
+                    player.getDamage();
+                    if (player.lives == 0) {
+                        if (ConfigurationManager.isSoundEnabled()) {
+                            R.getSound("game-over").play();
+                        }
+                        game.setScreen(new MainMenuScreen(game)); //TODO Screen game over
                     }
-                    game.setScreen(new MainMenuScreen(game)); //TODO Screen game over
-                }
-                player.move(0, player.getY() + 10);
-                enemy.setGhosted(true);
-                enemy.setVelocity(0,-100);
+                    if (player.getY() > enemy.getY()) {
+                        player.move(0, 50);
+                        enemy.move(0, -30);
+                    }
+                    if (player.getX() < enemy.getX()) {
 
+                        enemy.move(30, 0);
+                    }
+                    if (player.getX() > enemy.getX()) {
+
+                        enemy.move(-30, 0);
+                    }
+                    enemy.setGhosted(true);
+                    enemy.setVelocity(0, -150);
+                    if (enemy.getY() < 0) {
+                        enemies.removeValue(enemy, true);
+                    }
+                }
             }
         }
         for (Item item : items){
