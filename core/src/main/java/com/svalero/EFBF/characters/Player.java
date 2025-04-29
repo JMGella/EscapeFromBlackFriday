@@ -1,45 +1,41 @@
 package com.svalero.EFBF.characters;
 
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.svalero.EFBF.manager.ConfigurationManager;
 import com.svalero.EFBF.manager.LevelManager;
 import com.svalero.EFBF.manager.R;
-import com.svalero.EFBF.screen.GameScreen;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.svalero.EFBF.util.Constants.*;
 
 public class Player extends Character {
     public int score;
     public int lives;
-    private int currentLevel;
-
     protected enum State {RIGHT, LEFT, IDLE_RIGHT, IDLE_LEFT}
     protected State state;
     protected Animation<TextureRegion> rightAnimation, leftAnimation;
     protected float stateTime;
 
-
+    private List<String> items;
 
 
     public Player(TextureRegion texture) {
         super(texture);
         score = 0;
         lives = 5;
-        currentLevel = 1;
         rightAnimation = new Animation<>(0.15f, R.getAnimation("player_run_right"));
         leftAnimation = new Animation<>(0.15f, R.getAnimation("player_run_left"));
         currentFrame = R.getTexture("player_idle_right");
         state = State.IDLE_RIGHT;
         setPosition(new Vector2(33, TILE_HEIGHT ));
         rectangle.setPosition(position.x, position.y);
+        items = new ArrayList<>();
 
 
     }
@@ -111,16 +107,12 @@ public class Player extends Character {
 
 
     public void takeItem(String name){
-        if (name.equals("phone")){
+        // phone , wallet , keys , bottle
+            items.add(name);
             score++;
-        } else if (name.equals("wallet")){
-            score++;
-        } else if (name.equals("keys")){
-            score++;
-        } else if (name.equals("bottle")){
-            score++;
-        }
-
+            if(ConfigurationManager.isSoundEnabled()) {
+                R.getSound("coin").play();
+            }
     }
 
 

@@ -75,15 +75,15 @@ public class LevelManager {
     }
 
     private void loadItems(){
-//        for (MapObject mapObject : map.getLayers().get("objects").getObjects()) {
-//            String type = mapObject.getProperties().get("type", String.class);
-//            if (type.equals("item")) {
-//                int x = (int) mapObject.getProperties().get("x", Integer.class);
-//                int y = (int) mapObject.getProperties().get("y", Integer.class);
-//                String name = mapObject.getProperties().get("name", String.class);
-//                logicManager.items.add(new Item(R.getTexture(name), new Vector2(x, y), name));
-//            }
-//        }
+        for (MapObject mapObject : objectsLayer.getObjects()) {
+            String type = mapObject.getProperties().get("type", String.class);
+            if (type.equals("item")) {
+                float x =  mapObject.getProperties().get("x", Float.class);
+                float y =  mapObject.getProperties().get("y", Float.class);
+                String name = mapObject.getProperties().get("name", String.class);
+                logicManager.items.add(new Item(R.getTexture(name), new Vector2(x, y), name));
+            }
+        }
 
     }
 

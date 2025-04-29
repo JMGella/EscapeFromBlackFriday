@@ -130,14 +130,12 @@ public class LogicManager {
                         }
                         game.setScreen(new GameScreen(game, currentLevel + 1));
                     } else{
-                        player.move(player.getX() - 20, player.getY());
+                        player.move( - 30, 0);
                     }
                 } else {
                     player.takeItem(item.name);
                     items.removeValue(item, true);
-                    if (ConfigurationManager.isSoundEnabled()) {
-                        R.getSound("coin").play();
-                    }
+
                 }
             }
         }
