@@ -69,6 +69,17 @@ public class LogicManager {
         }
     }
 
+    private void enemiesMoves(float dt){
+        for (Enemy enemy: enemies){
+            if (player.getX() < enemy.getX()){
+                enemy.setVelocity(enemy.speed,0);
+            } else if (player.getX() > enemy.getX()){
+                enemy.setVelocity(enemy.speed,0);
+            }
+
+        }
+    }
+
     private void manageColitions(){
         for (Enemy enemy : enemies){
             if (enemy.getRectangle().overlaps(player.getRectangle())){
@@ -78,7 +89,7 @@ public class LogicManager {
                 player.getDamage();
                 if (player.lives == 0){
                     if(ConfigurationManager.isSoundEnabled()){
-                        R.getSound("gameover").play();
+                        R.getSound("game-over").play();
                     }
                     game.setScreen(new GameScreen(game, 1));
                 }

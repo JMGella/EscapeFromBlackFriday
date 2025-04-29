@@ -67,8 +67,8 @@ public class LevelManager {
                 int x = (int) mapObject.getProperties().get("x", Integer.class);
                 int y = (int) mapObject.getProperties().get("y", Integer.class);
                 String name = mapObject.getProperties().get("name", String.class);
-                String speed = mapObject.getProperties().get("speed", String.class);
-                Enemy enemy = new Enemy(R.getTexture(name), new Vector2(x, y), speed);
+                String enemyNumber = mapObject.getProperties().get("enemyNumber", String.class);
+                Enemy enemy = new Enemy(R.getTexture("enemy" + enemyNumber + "idle_left"), new Vector2(x, y), enemyNumber);
                 logicManager.enemies.add(enemy);
             }
         }

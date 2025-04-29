@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
+import com.svalero.EFBF.manager.ConfigurationManager;
 import com.svalero.EFBF.manager.LevelManager;
 import com.svalero.EFBF.manager.R;
 import com.svalero.EFBF.screen.GameScreen;
@@ -55,7 +56,11 @@ public class Player extends Character {
         if(!isJumping){
             velocity.y = PLAYER_JUMP_SPEED;
             isJumping = true;
-            R.getSound("jump").play();
+            if(ConfigurationManager.isSoundEnabled()) {
+                if (position.y > 100) {
+                    R.getSound("jump").play();
+                }
+            }
         }
     }
 

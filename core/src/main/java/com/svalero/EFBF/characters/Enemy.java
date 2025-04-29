@@ -6,22 +6,37 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.svalero.EFBF.manager.LevelManager;
+import com.svalero.EFBF.manager.R;
 
-import static com.svalero.EFBF.util.Constants.TILE_HEIGHT;
-import static com.svalero.EFBF.util.Constants.TILE_WIDTH;
+import static com.svalero.EFBF.util.Constants.*;
 
 public class Enemy extends Player {
 
-    protected int speed;
+    public int speed;
     private boolean ghosted;
 
-    public Enemy(TextureRegion texture, Vector2 position, String speed) {
+
+
+    private int intEnemyNumber;
+
+    public Enemy(TextureRegion texture, Vector2 position, String EnemyNumber) {
         super(texture);
         this.position = position;
         this.currentFrame = texture;
+        rightAnimation = new Animation<>(0.15f, R.getAnimation("enemy" + EnemyNumber + "_run_right"));
+        leftAnimation = new Animation<>(0.15f, R.getAnimation("enemy" + EnemyNumber + "_run_left"));
         this.rectangle = new Rectangle(position.x, position.y, texture.getRegionWidth(), texture.getRegionHeight());
         this.state = State.IDLE_LEFT;
-        this.speed = Integer.parseInt(speed);
+        this.stateTime = 0;
+        this.intEnemyNumber = Integer.parseInt(EnemyNumber);
+        if (intEnemyNumber == 1) {
+            this.speed = 100;
+        } else if (intEnemyNumber == 2) {
+            this.speed = 200;
+        } else if (intEnemyNumber == 3) {
+            this.speed = 300;
+        }
+        this.ghosted = false;
     }
 
     public void setGhosted(boolean ghosted) {
@@ -67,6 +82,25 @@ public class Enemy extends Player {
 
     @Override
     public void update(float dt) {
+
+        velocity.y += GRAVITY * dt;
+        stateTime += dt;
+        float nextX = position.x + velocity.x * dt;
+        if (!isCellBlocked(nextX, position.y)) {
+            position.x = nextX;
+        } else {
+            velocity.x = 0;
+        }
+        float nextY = position.y + velocity.y * dt;
+        if (!isCellBlocked(position.x, nextY)) {
+            position.y = nextY;
+        } else {
+            if (velocity.y < 0) {
+                isJumping = false;
+            }
+            velocity.y = 0;
+        }
+        rectangle.setPosition(position);
 
     }
 }
