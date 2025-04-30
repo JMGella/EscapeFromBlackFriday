@@ -41,8 +41,11 @@ public class Rat extends Character{
 
 
     public void update(float dt){
+
         velocity.y += GRAVITY * dt;
+
         stateTime += dt;
+
         if (isMovingRight) {
             velocity.x = this.speed;
         } else {
@@ -54,9 +57,9 @@ public class Rat extends Character{
 
 
 
-        if (isMovingRight && nextX > startX + TILE_WIDTH *2) {
+        if (isMovingRight && nextX > startX + TILE_WIDTH * 4) {
             isMovingRight = false;
-        } else if (!isMovingRight && nextX < startX - TILE_WIDTH *2) {
+        } else if (!isMovingRight && nextX < startX) {
             isMovingRight = true;
         }
 
@@ -64,19 +67,15 @@ public class Rat extends Character{
         if (ghosted){
             position.x = nextX;
             position.y = nextY;
+
         } else {
 
-
-                position.x = nextX;
-
+            position.x = nextX;
 
             if (!isCellBlocked(position.x, nextY)) {
                 position.y = nextY;
 
             } else {
-                if (velocity.y < 0) {
-                    isJumping = false;
-                }
                 velocity.y = 0;
             }
         }

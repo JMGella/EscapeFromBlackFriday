@@ -28,9 +28,12 @@
         },
         "table.tsx": {
             "dynamicWrapping": false
+        },
+        "tileup.tsx": {
+            "dynamicWrapping": false
         }
     },
-    "last.imagePath": "C:/Users/javie/IdeaProjects/EFBK/assets/rat",
+    "last.imagePath": "C:/Users/javie/IdeaProjects/EFBK/assets/levels",
     "map.height": 10,
     "map.lastUsedFormat": "tmx",
     "map.width": 50,
@@ -43,8 +46,8 @@
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
-        "height": 9,
-        "width": 26
+        "height": 32,
+        "width": 32
     },
     "tileset.type": 0
 }
