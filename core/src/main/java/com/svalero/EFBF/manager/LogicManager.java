@@ -11,10 +11,7 @@ import com.svalero.EFBF.EFBF;
 import com.svalero.EFBF.characters.Enemy;
 import com.svalero.EFBF.characters.Player;
 import com.svalero.EFBF.items.Item;
-import com.svalero.EFBF.screen.GameOverScreen;
-import com.svalero.EFBF.screen.GameScreen;
-import com.svalero.EFBF.screen.MainMenuScreen;
-import com.svalero.EFBF.screen.PauseScreen;
+import com.svalero.EFBF.screen.*;
 import com.svalero.EFBF.util.Constants;
 
 import static com.svalero.EFBF.util.Constants.TILE_WIDTH;
@@ -128,11 +125,15 @@ public class LogicManager {
                         if(ConfigurationManager.isSoundEnabled()){
                             R.getSound("exit").play();
                         }
-                        game.setScreen(new GameScreen(game, currentLevel + 1));
+                        game.isPaused = true;
+                        game.setScreen(new LevelCompletedScreen(game, currentLevel));
                     } else{
                         player.move( - 30, 0);
                     }
                 } else {
+                    if(ConfigurationManager.isSoundEnabled()) {
+                        R.getSound("coin").play();
+                    }
                     player.takeItem(item.name);
                     items.removeValue(item, true);
 

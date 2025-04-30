@@ -110,9 +110,6 @@ public class Player extends Character {
         // phone , wallet , keys , bottle
             items.add(name);
             score++;
-            if(ConfigurationManager.isSoundEnabled()) {
-                R.getSound("coin").play();
-            }
     }
 
 

@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.svalero.EFBF.characters.Enemy;
+import com.svalero.EFBF.items.Item;
 
 public class RenderManager {
 
@@ -42,6 +43,9 @@ public class RenderManager {
 
         for (Enemy enemy : logicManager.enemies) {
             batch.draw(enemy.getCurrentFrame(), enemy.getX(), enemy.getY());
+        }
+        for (Item item : logicManager.items) {
+            batch.draw(item.getCurrentFrame(), item.getX(), item.getY());
         }
 
         batch.end();

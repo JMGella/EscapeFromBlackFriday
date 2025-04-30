@@ -7,13 +7,12 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.actions.Actions;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
-import com.kotcrab.vis.ui.VisUI;
 import com.svalero.EFBF.EFBF;
 
-public class GameOverScreen implements Screen {
-
+public class LevelCompletedScreen implements Screen {
 
     private EFBF game;
+    private int level;
 
     private Texture texture;
 
@@ -21,24 +20,21 @@ public class GameOverScreen implements Screen {
 
     private Stage stage;
 
-    public GameOverScreen(EFBF game) {
+    public LevelCompletedScreen(EFBF game, int level) {
         this.game = game;
+        this.level = level;
         loadScreen();
     }
 
     private void loadScreen() {
-
-        texture = new Texture("gameover.png");
+        texture = new Texture("level_completed.png");
         image = new Image(texture);
         stage = new Stage();
         stage.addActor(image);
-
-
     }
+
     @Override
     public void show() {
-        game.isGameOver = true;
-
         Table table = new Table();
         table.setFillParent(true);
         table.center();
@@ -47,7 +43,16 @@ public class GameOverScreen implements Screen {
 
 
         image.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(1f),
-            Actions.delay(2.5f), Actions.run(() -> game.setScreen(new MainMenuScreen(game)))));
+            Actions.delay(2.5f), Actions.run(() -> {
+                    if (level == 1) {
+                        game.setScreen(new GameScreen(game, 2));
+                    } else {
+                        game.isGameOver = true;
+                        game.setScreen(new MainMenuScreen(game));
+                    }
+                }
+            )));
+
 
         table.add(image).center();
         stage.addActor(table);
@@ -61,7 +66,6 @@ public class GameOverScreen implements Screen {
 
         stage.act();
         stage.draw();
-
     }
 
     @Override
@@ -88,6 +92,5 @@ public class GameOverScreen implements Screen {
     public void dispose() {
         texture.dispose();
         stage.dispose();
-
     }
 }
