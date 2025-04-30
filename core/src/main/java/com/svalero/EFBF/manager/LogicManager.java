@@ -68,17 +68,6 @@ public class LogicManager {
         }
     }
 
-    private void enemiesMoves(float dt){
-        for (Enemy enemy: enemies){
-            if (player.getX() < enemy.getX()){
-                enemy.setVelocity(-enemy.speed,0);
-            } else if (player.getX() > enemy.getX()){
-                enemy.setVelocity(enemy.speed,0);
-            }
-            enemy.update(dt);
-
-        }
-    }
 
     private void manageColitions(){
         for (Enemy enemy : enemies){
@@ -152,7 +141,9 @@ public class LogicManager {
         managePlayerInput(dt);
         manageColitions();
         player.update(dt);
-        enemiesMoves(dt);
+        for (Enemy enemy: enemies){
+            enemy.update(dt);
+        }
 
 
 

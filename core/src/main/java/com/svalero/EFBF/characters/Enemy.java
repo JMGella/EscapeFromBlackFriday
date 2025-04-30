@@ -15,6 +15,10 @@ public class Enemy extends Player {
     public int speed;
     public boolean ghosted;
 
+    private boolean isMovingRight;
+
+    private boolean isPlayerNear;
+
 
 
     private int intEnemyNumber;
@@ -50,6 +54,11 @@ public class Enemy extends Player {
 
         velocity.y += GRAVITY * dt;
         stateTime += dt;
+        if (isMovingRight) {
+            velocity.x = speed;
+        } else {
+            velocity.x = -speed;
+        }
         float nextX = position.x + velocity.x * dt;
         float nextY = position.y + velocity.y * dt;
         if (ghosted){
@@ -60,7 +69,7 @@ public class Enemy extends Player {
             if (!isCellBlocked(nextX, position.y)) {
                 position.x = nextX;
             } else {
-                velocity.x = 0;
+                isMovingRight = !isMovingRight;
             }
 
             if (!isCellBlocked(position.x, nextY)) {
