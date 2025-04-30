@@ -10,6 +10,7 @@ import com.badlogic.gdx.utils.Array;
 import com.svalero.EFBF.EFBF;
 import com.svalero.EFBF.characters.Enemy;
 import com.svalero.EFBF.characters.Player;
+import com.svalero.EFBF.characters.Rat;
 import com.svalero.EFBF.items.Item;
 import com.svalero.EFBF.screen.*;
 import com.svalero.EFBF.util.Constants;
@@ -28,6 +29,8 @@ public class LogicManager {
     public Array<Enemy> enemies;
     public Array<Item> items;
 
+    public Array<Rat> rats;
+
 
     public LogicManager(EFBF game) {
         this.game = game;
@@ -40,6 +43,7 @@ public class LogicManager {
     private void load(){
         enemies = new Array<>();
         items = new Array<>();
+        rats = new Array<>();
     }
 
 
@@ -129,6 +133,44 @@ public class LogicManager {
                 }
             }
         }
+        for (Rat rat : rats){
+            if (rat.getRectangle().overlaps(player.getRectangle())){
+
+                if (!rat.ghosted) {
+                    if (player.getY() > rat.getY() + rat.getHeight() / 2) {
+
+                        if(ConfigurationManager.isSoundEnabled()){
+                            R.getSound("hit").play();
+                        }
+                        player.move(0, 50);
+                        rat.move(0, -30);
+                    } else {
+                        if(ConfigurationManager.isSoundEnabled()){
+                            R.getSound("ouch").play();
+                        }
+                        player.getDamage();
+                    }
+                    if (rat.getX() > player.getX()){
+                        rat.move(30,0);
+
+                    } else{
+                        rat.move(-30, 0);
+                    }
+                    rat.setGhosted(true);
+                    rat.setVelocity(0, -1500);
+                    if (rat.getY() < 0) {
+                        rats.removeValue(rat, true);
+                    }
+                    if (player.lives == 0) {
+                        if (ConfigurationManager.isSoundEnabled()) {
+                            R.getSound("game-over").play();
+                        }
+                        game.isGameOver = true;
+                        game.setScreen(new GameOverScreen(game));
+                    }
+                }
+            }
+        }
 
     }
 
@@ -143,6 +185,9 @@ public class LogicManager {
         player.update(dt);
         for (Enemy enemy: enemies){
             enemy.update(dt);
+        }
+        for (Rat rat : rats){
+            rat.update(dt);
         }
 
 

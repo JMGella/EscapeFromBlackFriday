@@ -10,18 +10,16 @@ import com.svalero.EFBF.manager.R;
 
 import static com.svalero.EFBF.util.Constants.*;
 
-public class Enemy extends Player {
+public class Enemy extends Character {
 
     public int speed;
     public boolean ghosted;
 
     private boolean isMovingRight;
 
-    private boolean isPlayerNear;
-
-
-
     private int intEnemyNumber;
+
+
 
     public Enemy(TextureRegion texture, Vector2 position, String EnemyNumber) {
         super(texture);
@@ -49,7 +47,7 @@ public class Enemy extends Player {
 
 
 
-    @Override
+
     public void update(float dt) {
 
         velocity.y += GRAVITY * dt;
