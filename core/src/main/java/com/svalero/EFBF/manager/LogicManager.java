@@ -11,10 +11,12 @@ import com.svalero.EFBF.EFBF;
 import com.svalero.EFBF.characters.Enemy;
 import com.svalero.EFBF.characters.Player;
 import com.svalero.EFBF.characters.Rat;
+import com.svalero.EFBF.characters.Sign;
 import com.svalero.EFBF.items.Item;
 import com.svalero.EFBF.screen.*;
 import com.svalero.EFBF.util.Constants;
 
+import static com.svalero.EFBF.util.Constants.SIGN_VELOCITY;
 import static com.svalero.EFBF.util.Constants.TILE_WIDTH;
 
 
@@ -30,6 +32,7 @@ public class LogicManager {
     public Array<Item> items;
 
     public Array<Rat> rats;
+    public Array<Sign> signs;
 
 
     public LogicManager(EFBF game) {
@@ -44,6 +47,7 @@ public class LogicManager {
         enemies = new Array<>();
         items = new Array<>();
         rats = new Array<>();
+        signs = new Array<>();
     }
 
 
@@ -73,7 +77,7 @@ public class LogicManager {
     }
 
 
-    private void manageColitions(){
+    private void manageColitions(float dt){
         for (Enemy enemy : enemies){
             if (enemy.getRectangle().overlaps(player.getRectangle())){
                 if (!enemy.ghosted) {
@@ -101,13 +105,7 @@ public class LogicManager {
                     if (enemy.getY() < 0) {
                         enemies.removeValue(enemy, true);
                     }
-                    if (player.lives == 0) {
-                        if (ConfigurationManager.isSoundEnabled()) {
-                            R.getSound("game-over").play();
-                        }
-                        game.isGameOver = true;
-                        game.setScreen(new GameOverScreen(game));
-                    }
+                    checkPlayerLives();
                 }
             }
         }
@@ -161,19 +159,47 @@ public class LogicManager {
                     if (rat.getY() < 0) {
                         rats.removeValue(rat, true);
                     }
-                    if (player.lives == 0) {
-                        if (ConfigurationManager.isSoundEnabled()) {
-                            R.getSound("game-over").play();
-                        }
-                        game.isGameOver = true;
-                        game.setScreen(new GameOverScreen(game));
+                   checkPlayerLives();
+                }
+            }
+        }
+
+        for(Sign sign : signs){
+            if (sign.getRectangle().overlaps(player.getRectangle())){
+                if (!sign.isHitted) {
+                    if(ConfigurationManager.isSoundEnabled()){
+                        R.getSound("ouch").play();
+                    }
+                    player.getDamage();
+                    checkPlayerLives();
+                    sign.isHitted = true;
+                    if (sign.getY() < 0){
+                        signs.removeValue(sign, true);
                     }
                 }
+
             }
         }
 
     }
 
+    private void checkPlayerLives(){
+        if (player.lives == 0) {
+            if (ConfigurationManager.isSoundEnabled()) {
+                R.getSound("game-over").play();
+            }
+            game.isGameOver = true;
+            game.setScreen(new GameOverScreen(game));
+        }
+    }
+
+    private void checkPlayerIsNearSign(float dt){
+        for (Sign sign : signs){
+            if (sign.getX() - player.getX() < TILE_WIDTH *3){
+                sign.isFalling = true;
+            }
+        }
+    }
 
 
 
@@ -181,7 +207,7 @@ public class LogicManager {
 
 
         managePlayerInput(dt);
-        manageColitions();
+        manageColitions(dt);
         player.update(dt);
         for (Enemy enemy: enemies){
             enemy.update(dt);
@@ -189,10 +215,16 @@ public class LogicManager {
         for (Rat rat : rats){
             rat.update(dt);
         }
+        checkPlayerIsNearSign(dt);
 
-
+        for (Sign sign : signs){
+            sign.update(dt);
+        }
 
     }
+
+
 }
+
 
 

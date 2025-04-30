@@ -13,6 +13,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.svalero.EFBF.characters.Enemy;
 import com.svalero.EFBF.characters.Player;
 import com.svalero.EFBF.characters.Rat;
+import com.svalero.EFBF.characters.Sign;
 import com.svalero.EFBF.items.Item;
 
 import static com.svalero.EFBF.util.Constants.GAME_NAME;
@@ -48,6 +49,7 @@ public class LevelManager {
         loadEnemies();
         loadItems();
         loadRats();
+        loadSigns();
     }
 
     private void setMusic(){
@@ -94,6 +96,17 @@ public class LevelManager {
                 float x =  mapObject.getProperties().get("x", Float.class);
                 float y =  mapObject.getProperties().get("y", Float.class);
                 logicManager.rats.add(new Rat(R.getTexture("rat_walk_right"), new Vector2(x, y)));
+            }
+        }
+    }
+
+    private void loadSigns(){
+        for (MapObject mapObject : objectsLayer.getObjects()) {
+            String type = mapObject.getProperties().get("type", String.class);
+            if (type.equals("sign")) {
+                float x =  mapObject.getProperties().get("x", Float.class);
+                float y =  mapObject.getProperties().get("y", Float.class);
+                logicManager.signs.add(new Sign(R.getTextureFile("ceilingSign"), new Vector2(x, y)));
             }
         }
     }

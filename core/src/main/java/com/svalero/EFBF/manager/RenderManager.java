@@ -6,6 +6,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.svalero.EFBF.characters.Enemy;
 import com.svalero.EFBF.characters.Rat;
+import com.svalero.EFBF.characters.Sign;
 import com.svalero.EFBF.items.Item;
 
 public class RenderManager {
@@ -50,6 +51,9 @@ public class RenderManager {
         }
         for (Rat rat : logicManager.rats) {
             batch.draw(rat.getCurrentFrame(), rat.getX(), rat.getY());
+        }
+        for (Sign sign : logicManager.signs) {
+            batch.draw(sign.getSignTexture(), sign.getX(), sign.getY());
         }
         batch.end();
     }

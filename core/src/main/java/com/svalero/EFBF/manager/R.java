@@ -4,6 +4,7 @@ package com.svalero.EFBF.manager;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.Array;
@@ -34,6 +35,7 @@ public class R {
         assetManager.load("sounds/jump.mp3", Sound.class);
         assetManager.load("sounds/exit.mp3", Sound.class);
         assetManager.load("sounds/game-over.mp3", Sound.class);
+        assetManager.load("levels/ceilingSign.png", Texture.class);
         assetManager.finishLoading();
 
     }
@@ -52,6 +54,10 @@ public class R {
 
     public static Sound getSound(String name) {
         return assetManager.get("sounds/" + name + ".mp3", Sound.class);
+    }
+
+    public static Texture getTextureFile(String name) {
+        return assetManager.get("levels/" + name + ".png", Texture.class);
     }
 }
 

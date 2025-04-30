@@ -11,4 +11,6 @@ public class Constants {
     public static final float PLAYER_JUMP_SPEED = 4000f;
 
     public static final float GRAVITY = -9000f;
+
+    public static final float SIGN_VELOCITY = 400f;
 }
