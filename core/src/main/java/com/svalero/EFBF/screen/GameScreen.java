@@ -51,13 +51,21 @@ public class GameScreen implements Screen {
         logicManager.update(v);
         renderManager.render();
         if(game.isGameOver){
-            levelManager.music.stop();
+            if(ConfigurationManager.isMusicEnabled()){
+                levelManager.music.stop();
+            }
+
         }
         else if (game.isPaused) {
-            levelManager.music.pause();
+            if (ConfigurationManager.isMusicEnabled()) {
+                levelManager.music.pause();
+            }
+
         }
         else {
-            levelManager.music.play();
+            if (ConfigurationManager.isMusicEnabled()) {
+                levelManager.music.play();
+            }
         }
 
     }

@@ -44,11 +44,11 @@ public class LevelCompletedScreen implements Screen {
 
         image.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(1f),
             Actions.delay(2.5f), Actions.run(() -> {
-                    if (level == 1) {
+                    if (level == 1) {   //TODO CAMBIAR ESTO SI SE AÑADEN NIVELES
                         game.setScreen(new GameScreen(game, 2));
                     } else {
                         game.isGameOver = true;
-                        game.setScreen(new MainMenuScreen(game));
+                        game.setScreen(new GameOverScreen(game));
                     }
                 }
             )));

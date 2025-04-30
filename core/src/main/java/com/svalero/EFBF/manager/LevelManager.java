@@ -49,15 +49,13 @@ public class LevelManager {
     }
 
     private void setMusic(){
-        if(ConfigurationManager.isMusicEnabled()) {
+
             music = R.getMusic("level" + level + "Music");
             music.setLooping(true);
             music.setVolume(prefs.getFloat("volume", 50) / 100f);
+        if(ConfigurationManager.isMusicEnabled()) {
             music.play();
-        } else {
-            music.stop();
         }
-
     }
 
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="200" height="10" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="32">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="200" height="10" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="33">
  <tileset firstgid="1" source="Tiles.tsx"/>
  <tileset firstgid="13" source="table.tsx"/>
  <tileset firstgid="21" source="pc.tsx"/>
@@ -43,7 +43,7 @@
   </object>
   <object id="19" name="enemy3" gid="35" x="1636.67" y="269.667" width="28" height="69">
    <properties>
-    <property name="enemyNumber" value="1"/>
+    <property name="enemyNumber" value="3"/>
     <property name="type" value="enemy"/>
    </properties>
   </object>
@@ -61,7 +61,7 @@
   </object>
   <object id="22" name="enemy6" gid="35" x="3595.33" y="275" width="28" height="69">
    <properties>
-    <property name="enemyNumber" value="1"/>
+    <property name="enemyNumber" value="3"/>
     <property name="type" value="enemy"/>
    </properties>
   </object>
@@ -85,7 +85,7 @@
   </object>
   <object id="26" name="enemy10" gid="35" x="5714" y="277.667" width="28" height="69">
    <properties>
-    <property name="enemyNumber" value="2"/>
+    <property name="enemyNumber" value="3"/>
     <property name="type" value="enemy"/>
    </properties>
   </object>

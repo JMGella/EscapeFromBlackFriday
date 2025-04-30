@@ -12,6 +12,7 @@ import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTable;
 import com.kotcrab.vis.ui.widget.VisTextButton;
 import com.svalero.EFBF.EFBF;
+import com.svalero.EFBF.manager.ConfigurationManager;
 import com.svalero.EFBF.manager.R;
 
 import static com.svalero.EFBF.util.Constants.GAME_NAME;
@@ -48,7 +49,9 @@ public class MainMenuScreen implements Screen {
             public void clicked(InputEvent event, float x, float y) {
                 dispose();
                 ((Game) Gdx.app.getApplicationListener()).setScreen(new GameScreen(game,1));
-                music.stop();
+                if (ConfigurationManager.isMusicEnabled()) {
+                    music.stop();
+                }
             }
         });
 

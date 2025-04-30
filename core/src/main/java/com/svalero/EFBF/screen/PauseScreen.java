@@ -11,6 +11,7 @@ import com.kotcrab.vis.ui.VisUI;
 import com.kotcrab.vis.ui.widget.VisLabel;
 import com.kotcrab.vis.ui.widget.VisTextButton;
 import com.svalero.EFBF.EFBF;
+import com.svalero.EFBF.manager.LevelManager;
 
 public class PauseScreen implements Screen {
 
@@ -19,9 +20,12 @@ public class PauseScreen implements Screen {
 
     private Stage stage;
 
+    private Screen thisScreen;
+
     public PauseScreen(EFBF game, Screen previousScreen) {
         this.game = game;
         this.previousScreen = previousScreen;
+        thisScreen = this;
 
     }
     @Override
@@ -50,6 +54,15 @@ public class PauseScreen implements Screen {
             }
         });
 
+
+        VisTextButton optionsButton = new VisTextButton("Options");
+        optionsButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                game.setScreen(new ConfigurationScreen(game, thisScreen, LevelManager.music));
+            }
+        });
+
         VisTextButton exitButton = new VisTextButton("Exit");
         exitButton.addListener(new ClickListener() {
             @Override
@@ -60,9 +73,13 @@ public class PauseScreen implements Screen {
             }
         });
 
+
+
         table.add(pauseLabel).padBottom(50);
         table.row();
         table.add(resumeButton).width(200).height(50).padBottom(20);
+        table.row();
+        table.add(optionsButton).width(200).height(50).padBottom(20);
         table.row();
         table.add(exitButton).width(200).height(50).padBottom(20);
 
