@@ -17,14 +17,31 @@
             "scaleInEditor": 1
         },
         "level1.tmx": {
+            "expandedObjectLayers": [
+                6
+            ],
             "scale": 0.75,
-            "selectedLayer": 3,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 1115.9999999999998,
-                "y": 197.33333333333337
+                "x": 5616,
+                "y": 289.33333333333337
             }
         },
         "level1.tmx#ceilingSign": {
+            "scaleInDock": 1
+        },
+        "level2.tmx": {
+            "expandedObjectLayers": [
+                6
+            ],
+            "scale": 0.75,
+            "selectedLayer": 4,
+            "viewCenter": {
+                "x": 2724,
+                "y": 268
+            }
+        },
+        "level2.tmx#ceilingSign": {
             "scaleInDock": 1
         },
         "sign.tsx": {
@@ -50,8 +67,8 @@
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
-        "height": 96,
-        "width": 112
+        "height": 32,
+        "width": 32
     },
     "tileset.type": 0
 }

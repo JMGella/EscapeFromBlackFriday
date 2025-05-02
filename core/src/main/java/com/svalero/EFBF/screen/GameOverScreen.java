@@ -38,6 +38,7 @@ public class GameOverScreen implements Screen {
     @Override
     public void show() {
         game.isGameOver = true;
+        game.currentLevel = 1;
 
         Table table = new Table();
         table.setFillParent(true);

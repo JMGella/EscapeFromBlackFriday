@@ -33,9 +33,9 @@ public class LevelManager {
 
 
     private LogicManager logicManager;
-    public LevelManager(LogicManager logicManager, int currentLevel) {
+    public LevelManager(LogicManager logicManager) {
         this.logicManager = logicManager;
-        level = currentLevel;
+        level = logicManager.currentLevel;
         loadCurrentLevel(level);
     }
 
@@ -81,6 +81,7 @@ public class LevelManager {
                 float x =  mapObject.getProperties().get("x", Float.class);
                 float y =  mapObject.getProperties().get("y", Float.class);
                 String name = mapObject.getProperties().get("name", String.class);
+                System.out.println("Item name: " + name);
                 logicManager.items.add(new Item(R.getTexture(name), new Vector2(x, y), name));
             }
         }

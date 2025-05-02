@@ -18,6 +18,8 @@ public class Player extends Character {
     public int score;
     public int lives;
 
+    public int powerUpSpeed;
+    public int powerUpJump;
     public List<String> items;
 
 
@@ -32,21 +34,23 @@ public class Player extends Character {
         setPosition(new Vector2(33, TILE_HEIGHT ));
         rectangle.setPosition(position.x, position.y);
         items = new ArrayList<>();
+        powerUpSpeed = 0;
+        powerUpJump = 0;
 
 
     }
 
     public void moveRight() {
-        velocity.x = PLAYER_SPEED;
+        velocity.x = PLAYER_SPEED + powerUpSpeed;
     }
 
     public void moveLeft() {
-        velocity.x = -PLAYER_SPEED;
+        velocity.x = -PLAYER_SPEED - powerUpSpeed;
     }
 
     public void jump(){
         if(!isJumping){
-            velocity.y = PLAYER_JUMP_SPEED;
+            velocity.y = PLAYER_JUMP_SPEED + powerUpJump;
             isJumping = true;
             if(ConfigurationManager.isSoundEnabled()) {
                 if (position.y > 100) {

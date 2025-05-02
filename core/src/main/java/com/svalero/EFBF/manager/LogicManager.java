@@ -7,6 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.Timer;
 import com.svalero.EFBF.EFBF;
 import com.svalero.EFBF.characters.Enemy;
 import com.svalero.EFBF.characters.Player;
@@ -37,9 +38,10 @@ public class LogicManager {
     private float soundVolume;
 
 
+
     public LogicManager(EFBF game) {
         this.game = game;
-        currentLevel = 1;
+        this.currentLevel = game.currentLevel;
         createPlayer();
         load();
     }
@@ -119,10 +121,29 @@ public class LogicManager {
                             R.getSound("exit").play(ConfigurationManager.getSoundVolume());
                         }
                         game.isPaused = true;
-                        game.setScreen(new LevelCompletedScreen(game, currentLevel));
+                        game.setScreen(new LevelCompletedScreen(game));
                     } else{
                         player.move( - 30, 0);
                     }
+                } else if (item.name.equals("heart")) {
+                    if (ConfigurationManager.isSoundEnabled()) {
+                        R.getSound("powerup").play(ConfigurationManager.getSoundVolume());
+                        }
+                    player.lives = 5;
+                    items.removeValue(item, true);
+                } else if (item.name.equals("star")){
+                    if (ConfigurationManager.isSoundEnabled()) {
+                        R.getSound("powerup").play(ConfigurationManager.getSoundVolume());
+                    }
+                    player.powerUpSpeed = 100;
+                    items.removeValue(item, true);
+
+                } else if(item.name.equals("arrow")){
+                    if (ConfigurationManager.isSoundEnabled()) {
+                        R.getSound("powerup").play(ConfigurationManager.getSoundVolume());
+                    }
+                    player.powerUpJump = 2000;
+                    items.removeValue(item, true);
                 } else {
                     if(ConfigurationManager.isSoundEnabled()) {
                         R.getSound("coin").play(ConfigurationManager.getSoundVolume());

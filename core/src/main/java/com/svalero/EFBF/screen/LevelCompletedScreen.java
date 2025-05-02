@@ -12,7 +12,7 @@ import com.svalero.EFBF.EFBF;
 public class LevelCompletedScreen implements Screen {
 
     private EFBF game;
-    private int level;
+
 
     private Texture texture;
 
@@ -20,9 +20,8 @@ public class LevelCompletedScreen implements Screen {
 
     private Stage stage;
 
-    public LevelCompletedScreen(EFBF game, int level) {
+    public LevelCompletedScreen(EFBF game) {
         this.game = game;
-        this.level = level;
         loadScreen();
     }
 
@@ -44,9 +43,9 @@ public class LevelCompletedScreen implements Screen {
 
         image.addAction(Actions.sequence(Actions.alpha(0), Actions.fadeIn(1f),
             Actions.delay(2.5f), Actions.run(() -> {
-                    if (level == 1) {   //TODO CAMBIAR ESTO SI SE AÑADEN NIVELES
-                        level++;
-                        game.setScreen(new GameScreen(game, level));
+                    if (game.currentLevel == 1) {   //TODO CAMBIAR ESTO SI SE AÑADEN NIVELES
+                        game.currentLevel++;
+                        game.setScreen(new GameScreen(game));
                     } else {
                         game.isGameOver = true;
                         game.setScreen(new GameOverScreen(game));

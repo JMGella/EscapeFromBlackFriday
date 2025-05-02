@@ -19,6 +19,8 @@ public class EFBF extends Game {
 
     public boolean isGameOver;
 
+    public int currentLevel = 1;
+
 
     @Override
     public void create() {

@@ -35,11 +35,15 @@ public class R {
         assetManager.load("sounds/jump.mp3", Sound.class);
         assetManager.load("sounds/exit.mp3", Sound.class);
         assetManager.load("sounds/game-over.mp3", Sound.class);
+        assetManager.load("sounds/powerup.mp3", Sound.class);
         assetManager.load("levels/ceilingSign.png", Texture.class);
         assetManager.load("levels/wallet.png", Texture.class);
         assetManager.load("levels/bottle.png", Texture.class);
         assetManager.load("levels/keys.png", Texture.class);
         assetManager.load("levels/phone.png", Texture.class);
+        assetManager.load("levels/star.png", Texture.class);
+        assetManager.load("levels/heart.png", Texture.class);
+        assetManager.load("levels/arrow.png", Texture.class);
         assetManager.finishLoading();
 
     }
