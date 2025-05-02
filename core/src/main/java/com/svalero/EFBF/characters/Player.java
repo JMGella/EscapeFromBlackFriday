@@ -18,7 +18,7 @@ public class Player extends Character {
     public int score;
     public int lives;
 
-    private List<String> items;
+    public List<String> items;
 
 
     public Player(TextureRegion texture) {
@@ -50,7 +50,8 @@ public class Player extends Character {
             isJumping = true;
             if(ConfigurationManager.isSoundEnabled()) {
                 if (position.y > 100) {
-                    R.getSound("jump").play();
+                    R.getSound("jump").play(ConfigurationManager.getSoundVolume());
+                    System.out.println(ConfigurationManager.getSoundVolume());
                 }
             }
         }

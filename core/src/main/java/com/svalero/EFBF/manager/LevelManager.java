@@ -30,14 +30,12 @@ public class LevelManager {
 
     private int level;
 
-    private Preferences prefs;
 
 
     private LogicManager logicManager;
     public LevelManager(LogicManager logicManager, int currentLevel) {
         this.logicManager = logicManager;
         level = currentLevel;
-        prefs = Gdx.app.getPreferences(GAME_NAME);
         loadCurrentLevel(level);
     }
 
@@ -56,7 +54,7 @@ public class LevelManager {
 
             music = R.getMusic("level" + level + "Music");
             music.setLooping(true);
-            music.setVolume(prefs.getFloat("volume", 50) / 100f);
+            music.setVolume(ConfigurationManager.getSoundVolume());
         if(ConfigurationManager.isMusicEnabled()) {
             music.play();
         }

@@ -34,13 +34,14 @@ public class LogicManager {
     public Array<Rat> rats;
     public Array<Sign> signs;
 
+    private float soundVolume;
+
 
     public LogicManager(EFBF game) {
         this.game = game;
         currentLevel = 1;
         createPlayer();
         load();
-
     }
 
     private void load(){
@@ -48,6 +49,7 @@ public class LogicManager {
         items = new Array<>();
         rats = new Array<>();
         signs = new Array<>();
+        soundVolume =ConfigurationManager.getSoundVolume();
     }
 
 
@@ -84,13 +86,13 @@ public class LogicManager {
                     if (player.getY() > enemy.getY() + enemy.getHeight() / 2) {
 
                         if(ConfigurationManager.isSoundEnabled()){
-                            R.getSound("hit").play();
+                            R.getSound("hit").play(ConfigurationManager.getSoundVolume());
                         }
                         player.move(0, 50);
                         enemy.move(0, -30);
                     } else {
                         if(ConfigurationManager.isSoundEnabled()){
-                            R.getSound("ouch").play();
+                            R.getSound("ouch").play(ConfigurationManager.getSoundVolume());
                         }
                         player.getDamage();
                     }
@@ -114,7 +116,7 @@ public class LogicManager {
                 if(item.name.equals("exit")){
                     if(player.score == 4){
                         if(ConfigurationManager.isSoundEnabled()){
-                            R.getSound("exit").play();
+                            R.getSound("exit").play(ConfigurationManager.getSoundVolume());
                         }
                         game.isPaused = true;
                         game.setScreen(new LevelCompletedScreen(game, currentLevel));
@@ -123,7 +125,7 @@ public class LogicManager {
                     }
                 } else {
                     if(ConfigurationManager.isSoundEnabled()) {
-                        R.getSound("coin").play();
+                        R.getSound("coin").play(ConfigurationManager.getSoundVolume());
                     }
                     player.takeItem(item.name);
                     items.removeValue(item, true);
@@ -138,13 +140,13 @@ public class LogicManager {
                     if (player.getY() > rat.getY() + rat.getHeight() / 2) {
 
                         if(ConfigurationManager.isSoundEnabled()){
-                            R.getSound("hit").play();
+                            R.getSound("hit").play(ConfigurationManager.getSoundVolume());
                         }
                         player.move(0, 50);
                         rat.move(0, -30);
                     } else {
                         if(ConfigurationManager.isSoundEnabled()){
-                            R.getSound("ouch").play();
+                            R.getSound("ouch").play(ConfigurationManager.getSoundVolume());
                         }
                         player.getDamage();
                     }
@@ -168,7 +170,7 @@ public class LogicManager {
             if (sign.getRectangle().overlaps(player.getRectangle())){
                 if (!sign.isHitted) {
                     if(ConfigurationManager.isSoundEnabled()){
-                        R.getSound("ouch").play();
+                        R.getSound("ouch").play(ConfigurationManager.getSoundVolume());
                     }
                     player.getDamage();
                     checkPlayerLives();
@@ -186,7 +188,7 @@ public class LogicManager {
     private void checkPlayerLives(){
         if (player.lives == 0) {
             if (ConfigurationManager.isSoundEnabled()) {
-                R.getSound("game-over").play();
+                R.getSound("game-over").play(ConfigurationManager.getSoundVolume());
             }
             game.isGameOver = true;
             game.setScreen(new GameOverScreen(game));
