@@ -51,7 +51,7 @@ public class Player extends Character {
             if(ConfigurationManager.isSoundEnabled()) {
                 if (position.y > 100) {
                     R.getSound("jump").play(ConfigurationManager.getSoundVolume());
-                    System.out.println(ConfigurationManager.getSoundVolume());
+
                 }
             }
         }

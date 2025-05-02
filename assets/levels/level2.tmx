@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="200" height="10" tilewidth="32" tileheight="32" infinite="0" nextlayerid="7" nextobjectid="62">
+ <tileset firstgid="1" source="Tiles.tsx"/>
+ <tileset firstgid="13" source="table.tsx"/>
+ <tileset firstgid="21" source="pc.tsx"/>
+ <tileset firstgid="25" source="tv.tsx"/>
+ <tileset firstgid="31" source="wetsign.tsx"/>
+ <tileset firstgid="35" source="enemy1_idle_left.tsx"/>
+ <tileset firstgid="36" source="box.tsx"/>
+ <tileset firstgid="37" source="sign.tsx"/>
+ <tileset firstgid="39" source="sign2.tsx"/>
+ <tileset firstgid="42" source="bottle.tsx"/>
+ <tileset firstgid="43" source="keys.tsx"/>
+ <tileset firstgid="44" source="phone.tsx"/>
+ <tileset firstgid="45" source="wallet.tsx"/>
+ <tileset firstgid="46" source="rat_walk_left_1.tsx"/>
+ <tileset firstgid="47" source="tileup.tsx"/>
+ <tileset firstgid="48" name="ceilingSign" tilewidth="112" tileheight="96" tilecount="1" columns="1">
+  <image source="ceilingSign.png" width="112" height="96"/>
+ </tileset>
+ <imagelayer id="3" name="background" repeatx="1">
+  <image source="background.png" width="727" height="320"/>
+ </imagelayer>
+ <imagelayer id="4" name="prebackground">
+  <image source="prebackground.png" width="727" height="320"/>
+ </imagelayer>
+ <imagelayer id="5" name="postbackground" offsetx="5554" offsety="0.666667">
+  <image source="postbackground.png" width="727" height="320"/>
+ </imagelayer>
+ <objectgroup id="6" name="objects">
+  <object id="1" name="exit" x="6174.67" y="138.667" width="55.3333" height="137.333">
+   <properties>
+    <property name="name" value="exit"/>
+    <property name="type" value="item"/>
+   </properties>
+  </object>
+  <object id="12" name="enemy1" gid="35" x="575.333" y="280.167" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="1"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="18" name="enemy2" gid="35" x="1248.67" y="272.333" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="2"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="19" name="enemy3" gid="35" x="1636.67" y="269.667" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="3"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="20" name="enemy4" gid="35" x="2022" y="275" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="2"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="21" name="enemy5" gid="35" x="2739.33" y="271" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="1"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="22" name="enemy6" gid="35" x="3595.33" y="275" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="3"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="23" name="enemy7" gid="35" x="3680.67" y="273.667" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="2"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="24" name="enemy8" gid="35" x="4215.33" y="277.667" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="1"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="25" name="enemy9" gid="35" x="4470" y="269.667" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="1"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="26" name="enemy10" gid="35" x="5808.67" y="281.667" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="3"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="28" name="bottle" gid="42" x="897.333" y="96" width="32" height="32">
+   <properties>
+    <property name="name" value="bottle"/>
+    <property name="type" value="item"/>
+   </properties>
+  </object>
+  <object id="29" name="keys" gid="43" x="2286.67" y="282.667" width="32" height="32">
+   <properties>
+    <property name="name" value="keys"/>
+    <property name="type" value="item"/>
+   </properties>
+  </object>
+  <object id="30" name="phone" gid="44" x="2826.67" y="89.3334" width="32" height="32">
+   <properties>
+    <property name="name" value="phone"/>
+    <property name="type" value="item"/>
+   </properties>
+  </object>
+  <object id="31" name="wallet" gid="45" x="5325.33" y="89.3333" width="32" height="32">
+   <properties>
+    <property name="name" value="wallet"/>
+    <property name="type" value="item"/>
+   </properties>
+  </object>
+  <object id="33" name="rat1" gid="46" x="3925.67" y="277" width="26" height="9">
+   <properties>
+    <property name="type" value="rat"/>
+   </properties>
+  </object>
+  <object id="34" name="rat2" gid="46" x="3088.33" y="90.3333" width="26" height="9">
+   <properties>
+    <property name="type" value="rat"/>
+   </properties>
+  </object>
+  <object id="35" name="rat3" gid="46" x="5217.67" y="67.6667" width="26" height="9">
+   <properties>
+    <property name="type" value="rat"/>
+   </properties>
+  </object>
+  <object id="36" name="rat4" gid="46" x="751" y="55.6667" width="26" height="9">
+   <properties>
+    <property name="type" value="rat"/>
+   </properties>
+  </object>
+  <object id="38" name="sign1" gid="48" x="1640" y="97.3333" width="112" height="96">
+   <properties>
+    <property name="type" value="sign"/>
+   </properties>
+  </object>
+  <object id="39" name="sign2" gid="48" x="2370.67" y="96" width="112" height="96">
+   <properties>
+    <property name="type" value="sign"/>
+   </properties>
+  </object>
+  <object id="40" name="sign3" gid="48" x="4546.67" y="93.3333" width="112" height="96">
+   <properties>
+    <property name="type" value="sign"/>
+   </properties>
+  </object>
+  <object id="41" name="sing4" gid="48" x="5742.67" y="94.6667" width="112" height="96">
+   <properties>
+    <property name="type" value="sign"/>
+   </properties>
+  </object>
+  <object id="42" name="enemy1" gid="35" x="638" y="278.833" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="2"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="43" name="enemy1" gid="35" x="694" y="280.167" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="3"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="44" name="enemy1" gid="35" x="771.333" y="278.833" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="1"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="45" name="enemy1" gid="35" x="867.333" y="272.167" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="2"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="46" name="enemy1" gid="35" x="924.667" y="274.833" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="3"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="47" name="rat2" gid="46" x="2191" y="274.167" width="26" height="9">
+   <properties>
+    <property name="type" value="rat"/>
+   </properties>
+  </object>
+  <object id="48" name="rat2" gid="46" x="2405.67" y="274.167" width="26" height="9">
+   <properties>
+    <property name="type" value="rat"/>
+   </properties>
+  </object>
+  <object id="49" name="rat2" gid="46" x="2105.67" y="274.167" width="26" height="9">
+   <properties>
+    <property name="type" value="rat"/>
+   </properties>
+  </object>
+  <object id="50" name="rat2" gid="46" x="2233.67" y="179.5" width="26" height="9">
+   <properties>
+    <property name="type" value="rat"/>
+   </properties>
+  </object>
+  <object id="51" name="rat2" gid="46" x="2813.67" y="255.5" width="26" height="9">
+   <properties>
+    <property name="type" value="rat"/>
+   </properties>
+  </object>
+  <object id="52" name="enemy6" gid="35" x="2662" y="268.167" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="3"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="53" name="enemy7" gid="35" x="4019.33" y="274.833" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="2"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="54" name="enemy7" gid="35" x="4984.67" y="277.5" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="2"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="55" name="enemy7" gid="35" x="5258" y="280.167" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="3"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="56" name="rat2" gid="46" x="5445.67" y="279.5" width="26" height="9">
+   <properties>
+    <property name="type" value="rat"/>
+   </properties>
+  </object>
+  <object id="57" name="rat2" gid="46" x="513.667" y="68.8333" width="26" height="9">
+   <properties>
+    <property name="type" value="rat"/>
+   </properties>
+  </object>
+  <object id="58" name="rat2" gid="46" x="209.667" y="274.167" width="26" height="9">
+   <properties>
+    <property name="type" value="rat"/>
+   </properties>
+  </object>
+  <object id="59" name="rat2" gid="46" x="1209.67" y="56.8333" width="26" height="9">
+   <properties>
+    <property name="type" value="rat"/>
+   </properties>
+  </object>
+  <object id="60" name="enemy7" gid="35" x="5659.33" y="269.5" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="3"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+  <object id="61" name="enemy7" gid="35" x="5896.67" y="266.833" width="28" height="69">
+   <properties>
+    <property name="enemyNumber" value="3"/>
+    <property name="type" value="enemy"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer id="1" name="ground" width="200" height="10">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,47,0,0,0,0,0,0,47,47,47,47,47,47,47,47,0,0,0,0,0,47,47,47,47,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,47,47,47,47,47,0,0,0,0,47,47,47,47,47,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,47,47,0,47,47,47,47,47,47,47,47,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,47,47,0,0,47,47,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,47,47,47,47,47,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+32,0,0,0,0,0,0,21,22,0,0,21,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,36,0,0,0,0,0,0,0,0,0,21,22,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,47,47,47,0,0,0,0,0,0,47,47,47,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,26,27,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,26,27,0,0,25,26,27,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,26,27,0,0,0,0,0,0,0,0,47,47,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,19,
+32,0,0,0,0,0,0,23,24,0,0,23,24,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,36,0,36,0,0,0,0,0,0,0,0,0,23,24,0,0,0,0,0,0,0,0,0,0,0,0,0,39,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,39,0,0,0,0,0,0,0,0,0,0,0,0,0,28,29,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,28,29,30,0,0,28,29,30,0,0,0,0,0,0,0,0,39,0,0,0,0,0,0,0,0,0,0,0,0,0,0,28,29,30,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,39,39,39,
+33,0,0,0,0,13,14,14,15,14,15,14,15,16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,47,36,36,36,0,0,0,0,0,0,0,13,14,15,16,0,0,0,0,0,0,0,0,0,13,14,15,16,40,0,0,0,0,0,0,0,0,37,0,0,37,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,37,40,0,0,0,0,0,0,0,13,14,15,16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,0,0,0,0,13,14,15,16,0,0,0,0,0,37,0,0,0,0,0,0,0,0,0,0,0,0,0,37,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,40,40,40,
+34,0,0,0,0,17,0,0,0,0,0,0,0,20,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,36,36,36,36,0,0,0,0,0,0,0,17,0,0,20,0,0,0,0,0,0,0,0,0,17,0,0,20,41,0,0,0,0,0,0,0,0,38,0,0,38,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,38,41,36,0,0,0,0,0,0,17,0,0,20,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41,0,0,0,0,17,0,0,20,0,0,0,0,0,38,0,0,0,0,0,0,0,0,0,0,0,0,0,38,0,36,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,41,41,41,
+19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,19,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18,18
+</data>
+ </layer>
+</map>

@@ -17,12 +17,15 @@
             "scaleInEditor": 1
         },
         "level1.tmx": {
-            "scale": 1.7535416666666668,
-            "selectedLayer": 1,
+            "scale": 0.75,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 480.1710823333729,
-                "y": 264.60734228347394
+                "x": 1115.9999999999998,
+                "y": 197.33333333333337
             }
+        },
+        "level1.tmx#ceilingSign": {
+            "scaleInDock": 1
         },
         "sign.tsx": {
             "dynamicWrapping": false
@@ -42,8 +45,8 @@
     ],
     "project": "EFBF.tiled-project",
     "recentFiles": [
-        "enemy1_idle_left.tsx",
-        "level1.tmx"
+        "level1.tmx",
+        "enemy1_idle_left.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
