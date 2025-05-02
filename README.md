@@ -32,6 +32,13 @@ Este proyecto fue desarrollado como parte de la asignatura **Programación Multi
 - **Tiled** (para diseño de niveles)
 - **VisUI** (para UI gráfica)
 
+## 🎮 Capturas del juego 
+
+![Captura](assets/splashImage.png)
+
+![Captura](assets/splashImage.png)
+
+
 
 # 🛠️ Instrucciones de Ejecución
 
