@@ -45,7 +45,7 @@ Este proyecto fue desarrollado como parte de la asignatura **Programación Multi
 ## Clonar el repositorio
 
 ```bash
-git clone https://github.com/tu_usuario/EscapeFromBlackFriday.git
+git clone https://github.com/JMGella/EscapeFromBlackFriday.git
 cd EscapeFromBlackFriday
 ```
 
