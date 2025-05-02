@@ -36,7 +36,7 @@ Este proyecto fue desarrollado como parte de la asignatura **Programación Multi
 
 ![Captura](efbf1.png)
 
-![Captura](efbf2.png)
+![Captura](ebf2.png)
 
 
 
