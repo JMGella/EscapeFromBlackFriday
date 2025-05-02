@@ -46,7 +46,7 @@ Este proyecto fue desarrollado como parte de la asignatura **Programación Multi
 
 ```bash
 git clone https://github.com/JMGella/EscapeFromBlackFriday.git
-cd EscapeFromBlackFriday
+
 ```
 
 ## Ejecutar el juego
