@@ -73,6 +73,14 @@ public class PauseScreen implements Screen {
             }
         });
 
+        VisTextButton quitButton = new VisTextButton("Quit");
+        quitButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                Gdx.app.exit();
+            }
+        });
+
 
 
         table.add(pauseLabel).padBottom(50);
@@ -82,6 +90,8 @@ public class PauseScreen implements Screen {
         table.add(optionsButton).width(200).height(50).padBottom(20);
         table.row();
         table.add(exitButton).width(200).height(50).padBottom(20);
+        table.row();
+        table.add(quitButton).width(200).height(50).padBottom(20);
 
     }
 
