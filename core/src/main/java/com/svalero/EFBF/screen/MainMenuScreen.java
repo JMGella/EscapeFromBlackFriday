@@ -54,6 +54,14 @@ public class MainMenuScreen implements Screen {
                 }
             }
         });
+        VisTextButton instructionsButton = new VisTextButton("Instructions");
+        instructionsButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                dispose();
+                ((Game) Gdx.app.getApplicationListener()).setScreen(new InstructionsScreen(game, game.getScreen()));
+            }
+        });
 
         VisTextButton configButton = new VisTextButton("Configuration");
         configButton.addListener(new ClickListener() {
@@ -77,6 +85,8 @@ public class MainMenuScreen implements Screen {
         table.add(titleLabel).center().padBottom(30);;
         table.row();
         table.add(startButton).center().width(200).height(50).padBottom(20);;
+        table.row();
+        table.add(instructionsButton).center().width(200).height(50).padBottom(20);;
         table.row();
         table.add(configButton).center().width(200).height(50).padBottom(20);;
         table.row();
