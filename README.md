@@ -34,9 +34,9 @@ Este proyecto fue desarrollado como parte de la asignatura **Programación Multi
 
 ## 🎮 Capturas del juego 
 
-![Captura](assets/splashImage.png)
+![Captura](efbf1.png)
 
-![Captura](assets/splashImage.png)
+![Captura](efbf2.png)
 
 
 
