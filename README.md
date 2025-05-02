@@ -6,8 +6,7 @@
 
 **Escape From Black Friday** es un videojuego 2D estilo plataformas desarrollado en Java con la librería **libGDX**. En él controlas a un empleado de una tienda de electrónica que, tras acabar su turno en pleno Black Friday, debe escapar del caos esquivando clientes enfurecidos y recogiendo objetos personales antes de llegar a la salida.
 
-
-(assets/efbf.png)
+![Captura](assets/splashImage.png)
 
 ## 🎮 Características
 
